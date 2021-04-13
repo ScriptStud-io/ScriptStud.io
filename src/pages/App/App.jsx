@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
-import Signup from "../Signup/Signup";
-import Login from "../Login/Login";
+import SignupPage from "../SignupPage/SignupPage";
+import LoginPage from "../LoginPage/LoginPage";
 import "./App.css";
+import PageHeader from '../../components/PageHeader/PageHeader';
+import PageFooter from '../../components/PageFooter/PageFooter';
+import SideNav from '../../components/SideNav/SideNav';
 
 class App extends Component {
   state = {};
@@ -25,7 +28,7 @@ class App extends Component {
           exact
           path="/signup"
           render={({ history }) => (
-            <Signup
+            <SignupPage
               history={history}
             />
           )}
@@ -34,7 +37,7 @@ class App extends Component {
           exact
           path="/login"
           render={({ history }) => (
-            <Login
+            <LoginPage
               history={history}
             />
           )}
