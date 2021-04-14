@@ -1,11 +1,10 @@
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import authService from "../../services/authService"
 import './LoginPage.css';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import PageFooter from '../../components/PageFooter/PageFooter';
 import SideNav from '../../components/SideNav/SideNav';
-
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./LoginPage.css";
 
 class LoginPage extends Component {
   state = {
@@ -20,7 +19,15 @@ class LoginPage extends Component {
   };
 
   handleSubmit = async (e) => {
+    const { history, handleSignupOrLogin } = this.props;
     e.preventDefault();
+    try {
+      await authService.login(this.state);
+      handleSignupOrLogin()
+      history.push("/");
+    } catch (err) {
+      alert("Invalid Credentials!")
+    }
   };
 
   render() {
