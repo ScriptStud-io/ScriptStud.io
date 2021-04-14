@@ -1,8 +1,13 @@
+import './SignupPage.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import PageFooter from '../../components/PageFooter/PageFooter';
+import SideNav from '../../components/SideNav/SideNav';
+
 import React, { Component } from 'react';
 import SignupForm from '../../components/SignupForm/SignupForm';
-import './Signup.css';
+import './SignupPage.css';
 
-class Signup extends Component {
+class SignupPage extends Component {
   state = {
     message: ''
   }
@@ -21,4 +26,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default SignupPage;

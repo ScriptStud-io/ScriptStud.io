@@ -1,6 +1,11 @@
+import './LoginPage.css';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import PageFooter from '../../components/PageFooter/PageFooter';
+import SideNav from '../../components/SideNav/SideNav';
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import "./LoginPage.css";
 
 class LoginPage extends Component {
   state = {
@@ -21,7 +26,7 @@ class LoginPage extends Component {
   render() {
     const {email, pw} = this.state
     return (
-      <main className="Login">
+      <main className="LoginPage">
         <h3>Log In</h3>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
           <input
