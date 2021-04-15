@@ -40,6 +40,7 @@ class App extends Component {
     const {user} = this.state
     return (
       <>
+        <PageHeader />
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Route
           exact
@@ -49,6 +50,9 @@ class App extends Component {
               <h1>Welcome. This is an authorization template for Script Stud.io</h1>
             </main>
           )}
+        />
+        <Route 	path='/snip' 
+                render={()=><CodeSnippetPage />} 
         />
         <Route
           exact
@@ -86,9 +90,26 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
+        <Route 	path='/edit-snip' 
+                render={()=><EditSnippetPage />}
+        />
+        <Route 	path='/search' 
+                render={()=><SearchResultsPage />}
+        />
+        <PageFooter />
       </>
     );
   }
 }
 
 export default App;
+
+
+
+{/*
+<Route 	path='/new-snip' 
+    render={()=><CreateSnippetPage />}
+/>*/}
+
+
+
