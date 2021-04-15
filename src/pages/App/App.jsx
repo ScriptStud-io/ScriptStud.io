@@ -6,12 +6,15 @@ import LoginPage from "../LoginPage/LoginPage";
 import Users from "../Users/Users"
 import authService from "../../services/authService"
 import "./App.css";
-import PageHeader from '../../components/PageHeader/PageHeader';
-import PageFooter from '../../components/PageFooter/PageFooter';
-import SideNav from '../../components/SideNav/SideNav';
+import * as snippetAPI from '../../services/snippets-api'
+import CreateSnippetPage from "../CreateSnippetPage/CreateSnippetPage";
+// import PageHeader from '../../components/PageHeader/PageHeader';
+// import PageFooter from '../../components/PageFooter/PageFooter';
+// import SideNav from '../../components/SideNav/SideNav';
 
 class App extends Component {
   state = {
+    snippets: [],
     user: authService.getUser(),
   };
 
@@ -23,6 +26,14 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() })
+  }
+
+  handleAddSnippet = async newSnippetData => {
+    const newSnippet = await snippetAPI.create(newSnippetData);
+    newSnippet.addedBy = { name: this.state.user.name, _id: this.state.user._id }
+    this.setState(state => ({
+      snippets: [...state.snippets, newSnippet]
+    }), () => this.props.history.push('/snippets'));
   }
 
   render() {
@@ -66,6 +77,15 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
+        {/* <Route exact path='/snippets/create' render={() =>
+          authService.getUser() ?
+            <CreateSnippetPage
+              handleAddSnippet={this.handleAddSnippet}
+              user={this.state.user}
+            />
+            :
+            <Redirect to='/login' />
+        } /> */}
       </>
     );
   }
