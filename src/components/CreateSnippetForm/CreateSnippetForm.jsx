@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 // TODO: add styling (Jessica)
 
 
-class CreateSnippet extends Component {
+class CreateSnippetForm extends Component {
     state = { 
         newSnippet: {
             title: "",
@@ -17,25 +17,18 @@ class CreateSnippet extends Component {
             generic: "", 
             notes: "",
             sample: "", 
-            tags: "",
+            tags: [],
         },
         formInvalid: true
     };
 
     formRef = React.createRef();
 
-    // this function will check the validity of the entire form and update state with new entry if form is valid 
-    addSnippet = e => {
-        e.preventDefault();
-        if (!this.formRef.current.checkValidity()) return;
-        // Using the "function" approach because relying on existing state
-        this.setState(state => ({
-        // Always replace, don't mutate top-level state properties
-        Snippets: [...state.Snippets, state.newSnippet],
-        // Reset the inputs for better UX
-        newSnippet: {Snippet: '', level: 3}
-        }));
-    };
+    // passes component state data to app to be stored in db
+    handleSubmit = e => {
+		e.preventDefault();
+		this.props.handleAddSnippet(this.state.newSnippet);
+		};
 
     // this function will check validity of inputs and set those inputs to corresponding state props
     handleChange = e => {
@@ -50,13 +43,13 @@ class CreateSnippet extends Component {
 
     render() { 
         return ( 
-            <section>
+            <div className="CreateSnippetForm">
                 <h2>Create Snippet</h2>
-                <form ref={this.formRef} onSubmit={this.addSnippet}>
+                <form ref={this.formRef} onSubmit={this.handleSubmit}>
                 <label>
                     <span>Title:</span>
                     <input name="title" 
-                    value={this.state.Snippet} 
+                    value={this.state.title} 
                     onChange={this.handleChange}
                     required
                     pattern=".{4,}"
@@ -76,7 +69,7 @@ class CreateSnippet extends Component {
                 <label>
                     <span>Generic:</span>
                     <input name="generic" 
-                    value={this.state.purpose}
+                    value={this.state.generic}
                     onChange={this.handleChange} 
                     required
                     pattern=".{4,}"
@@ -85,8 +78,8 @@ class CreateSnippet extends Component {
 
                 <label>
                     <span>Notes:</span>
-                    <input name="purpose" 
-                    value={this.state.purpose}
+                    <input name="notes" 
+                    value={this.state.notes}
                     onChange={this.handleChange} 
                     required
                     pattern=".{4,}"
@@ -95,8 +88,8 @@ class CreateSnippet extends Component {
         {/* TODO: This input will need to be code syntax */}       
                 <label>
                     <span>Sample:</span>
-                    <input name="purpose" 
-                    value={this.state.purpose}
+                    <input name="sample" 
+                    value={this.state.sample}
                     onChange={this.handleChange} 
                     required
                     pattern=".{4,}"
@@ -105,8 +98,8 @@ class CreateSnippet extends Component {
         {/* TODO: This input will need refactoring for tag autocomplete with possibly semantic UI multiple selection functionality. MVP level functionality could use parsing by '\s' (spaces) to bring in each seperate tag if multiple present */}
                 <label>
                     <span>Tags:</span>
-                    <input name="purpose" 
-                    value={this.state.purpose}
+                    <input name="tags" 
+                    value={this.state.tags}
                     onChange={this.handleChange} 
                     required
                     pattern=".{4,}"
@@ -114,13 +107,13 @@ class CreateSnippet extends Component {
                 </label>
 
                 <button 
-                onClick={this.addSnippet}
+                type='submit'
                 disabled={this.state.formInvalid}
                 >ADD Snippet</button>
                 </form>
-            </section>
+            </div>
         );
     }
 }
  
-export default CreateSnippet;
+export default CreateSnippetForm;
