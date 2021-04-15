@@ -77,7 +77,7 @@ class App extends Component {
             user ? <Users /> : <Redirect to="/login" />
           }
         />
-        {/* <Route exact path='/snippets/create' render={() =>
+        <Route exact path='/snippets/create' render={() =>
           authService.getUser() ?
             <CreateSnippetPage
               handleAddSnippet={this.handleAddSnippet}
@@ -85,7 +85,7 @@ class App extends Component {
             />
             :
             <Redirect to='/login' />
-        } /> */}
+        } />
       </>
     );
   }
