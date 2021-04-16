@@ -8,9 +8,12 @@ import authService from "../../services/authService"
 import "./App.css";
 import * as snippetAPI from '../../services/snippets-api'
 import CreateSnippetPage from "../CreateSnippetPage/CreateSnippetPage";
-// import PageHeader from '../../components/PageHeader/PageHeader';
-// import PageFooter from '../../components/PageFooter/PageFooter';
-// import SideNav from '../../components/SideNav/SideNav';
+import PageHeader from '../../components/PageHeader/PageHeader';
+import PageFooter from '../../components/PageFooter/PageFooter';
+import SideNav from '../../components/SideNav/SideNav';
+import CodeSnippetPage from '../CodeSnippetPage/CodeSnippetPage';
+import EditSnippetPage from '../EditSnippetPage/EditSnippetPage';
+import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
 
 class App extends Component {
   state = {
