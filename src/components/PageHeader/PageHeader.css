@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@900&display=swap');
+
+#logo {
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-size: x-large
+}
+
+#logo-ends {
+    font-family: 'Libre Franklin', sans-serif;
+    color: #7DD757;
+    font-size: x-large;    
+}
+
+div.#nav-items > div:first-child {
+    justify-content: flex-start, !important;
+    color:black, !important;
+}

@@ -6,7 +6,7 @@ import './PageHeader.css';
 
 
 const navigation = [
-  { name: 'Snip Hub', href: '#', current: true },
+  { name: 'My Snips', href: '#', current: true },
   { name: 'Search Snips', href: '#', current: false },
   { name: 'Login', href: '#', current: false },
   { name: 'Sign Up', href: '#', current: false },
@@ -34,18 +34,22 @@ export default function PageHeader() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+              {/* start of nav link items - christian  */}
+              <div id="nav-items" className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
                 <div className="flex-shrink-0 flex items-center">
-                  <img
+                  {/* <img
                     className="block lg:hidden h-8 w-auto"
                     src="https://i.imgur.com/5XjSuzi.png"
                     alt="Workflow"
-                  />
-                  <img
+                  /> */}
+                  <p id="logo-ends">&#60;&nbsp;</p>
+                  <p id="logo">ScriptStud.io</p>
+                  <p id="logo-ends"> &nbsp;/&#62;</p>
+                  {/* <img
                     className="hidden lg:block h-8 w-auto"
                     src="https://i.imgur.com/5XjSuzi.png"
                     alt="Workflow"
-                  />
+                  /> */}
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
@@ -65,13 +69,18 @@ export default function PageHeader() {
                   </div>
                 </div>
               </div>
+              {/* end of nav link items */}
+
+              {/* notification icon */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
-                {/* Profile dropdown */}
+                {/* Avatar circle dropdown */}
+                {/* TODO: add links to dropdown items  */}
+                {/* TODO: pass props to populate avatar image (github UN?) */}
                 <Menu as="div" className="ml-3 relative">
                   {({ open }) => (
                     <>
@@ -141,12 +150,13 @@ export default function PageHeader() {
                         </Menu.Items>
                       </Transition>
                     </>
+                    // end Avatar dropdown
                   )}
                 </Menu>
               </div>
             </div>
           </div>
-
+            {/* Panel that drops down on toggle interact (mobile)*/}
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
