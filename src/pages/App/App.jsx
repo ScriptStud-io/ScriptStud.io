@@ -43,8 +43,8 @@ class App extends Component {
     const {user} = this.state
     return (
       <>
-        <PageHeader />
-        <NavBar user={this.state.user} handleLogout={this.handleLogout} />
+        <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
+        {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
         <Route
           exact
           path="/"

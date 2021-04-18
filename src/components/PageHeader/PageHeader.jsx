@@ -8,8 +8,8 @@ import './PageHeader.css';
 const navigation = [
   { name: 'My Snips', href: '#', current: true },
   { name: 'Search Snips', href: '#', current: false },
-  { name: 'Login', href: '#', current: false },
-  { name: 'Sign Up', href: '#', current: false },
+  { name: 'Login', href: '/login', current: false },
+  { name: 'Sign Up', href: '/signup', current: false },
 ]
 
 function classNames(...classes) {

@@ -1,5 +1,5 @@
 import './CreateSnippetForm.css';
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useRef  } from 'react';
 
 // * 1st Iteration of Create Snippet Form, 4/13/21, Christian Mosley
 // ! form is not tied to any routes, so testing is not possible 
