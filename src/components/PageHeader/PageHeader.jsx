@@ -34,23 +34,18 @@ export default function PageHeader() {
                   )}
                 </Disclosure.Button>
               </div>
-              {/* start of nav link items - christian  */}
-              <div id="nav-items" className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
-                <div className="flex-shrink-0 flex items-center">
-                  {/* <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="https://i.imgur.com/5XjSuzi.png"
-                    alt="Workflow"
-                  /> */}
+              <div id="nav-logo" className="absolute inset-y-0 left-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
                   <p id="logo-ends">&#60;&nbsp;</p>
                   <p id="logo">ScriptStud.io</p>
                   <p id="logo-ends"> &nbsp;/&#62;</p>
-                  {/* <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://i.imgur.com/5XjSuzi.png"
-                    alt="Workflow"
-                  /> */}
-                </div>
+              </div>
+              {/* start of nav link items - christian  */}
+              <div id="nav-items" className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
+                {/* <div id="nav-logo" className="flex-shrink-0 flex items-center">
+                  <p id="logo-ends">&#60;&nbsp;</p>
+                  <p id="logo">ScriptStud.io</p>
+                  <p id="logo-ends"> &nbsp;/&#62;</p>
+                </div> */}
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -71,8 +66,9 @@ export default function PageHeader() {
               </div>
               {/* end of nav link items */}
 
-              {/* notification icon */}
+              {/* div containing notify bell and avatar circle  */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              {/* notification icon */}
                 <button className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />

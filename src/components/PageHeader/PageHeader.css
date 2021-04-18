@@ -13,7 +13,10 @@
     font-size: x-large;    
 }
 
-div.#nav-items > div:first-child {
-    justify-content: flex-start, !important;
-    color:black, !important;
+#nav-logo {
+    margin-right: auto;
 }
+
+/* #nav-logo {
+    position: absolute;
+} */
