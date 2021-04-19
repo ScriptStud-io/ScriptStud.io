@@ -1,0 +1,46 @@
+main {
+    color: #ADB5BD;
+    font-family: monospace !important;
+}
+
+main h1, main h2 {
+    font-family: monospace;
+}
+
+main h2 {
+    text-align: right;
+}
+
+#snip-comp-title {
+    color: #BC00DD;
+}
+
+#snip-comp-purpose {
+    color: #D00000;
+}
+
+#snip-comp-lang {
+    color: #7DD757;
+}
+
+#snip-comp-genform {
+    color: #FB8500;
+}
+
+#snip-comp-guide {
+    color: #64DFDF;
+}
+
+#snip-comp-coded-exam {
+    color: #FFC300;
+}
+
+#snip-comp-tags {
+    color: #F20089;
+}
+
+.snip-comp-info-field {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
