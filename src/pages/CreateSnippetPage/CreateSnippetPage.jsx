@@ -4,16 +4,16 @@ import CreateSnippetForm from '../../components/CreateSnippetForm/CreateSnippetF
 
 const CreateSnippetPage = (props) => {
     
-        return ( 
-            <>
-                <div className='CreateSnippetPage'>
-                    <CreateSnippetForm
-                    handleAddSnippet={props.handleAddSnippet}
-                    user={props.user} />
-                </div>
-            </>
-         );
-    }
+    return ( 
+        <>
+            <div className='CreateSnippetPage'>
+                <CreateSnippetForm
+                handleAddSnippet={props.handleAddSnippet}
+                user={props.user} />
+            </div>
+        </>
+    );
+}
 
- 
+
 export default CreateSnippetPage;

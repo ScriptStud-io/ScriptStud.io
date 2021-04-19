@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect} from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -82,9 +82,17 @@ class App extends Component {
             </main>
           )}
         />
-        <Route 	path='/snip' 
-                render={()=><CodeSnippetPage />} 
-        />
+        <Switch>
+          <Route 	exact path='/snip' 
+                  render={(props)=><CodeSnippetPage {...props} />} 
+          />
+          <Route 	exact path='/snip/all' 
+                  render={(props)=><CodeSnippetPage {...props} />} 
+          />
+          <Route 	exact path='/snip/:snipid' 
+                  render={(props)=><CodeSnippetPage {...props} />} 
+          />
+        </Switch>
         <Route
           exact
           path="/signup"

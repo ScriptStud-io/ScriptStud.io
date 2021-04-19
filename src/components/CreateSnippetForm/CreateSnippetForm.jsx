@@ -43,6 +43,9 @@ export default function CreateSnippetForm(props){
         handleAddSnippet(state)
     }
 
+    // find one snippet for view page
+    
+
     return ( 
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
