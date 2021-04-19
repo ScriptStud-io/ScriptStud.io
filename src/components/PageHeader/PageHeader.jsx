@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
 
@@ -34,11 +35,13 @@ export default function PageHeader() {
                   )}
                 </Disclosure.Button>
               </div>
+              <Link to='/'>
               <div id="nav-logo" className="absolute inset-y-0 left-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
-                  <p id="logo-ends">&#60;&nbsp;</p>
+                  <p href="/" id="logo-ends">&#60;&nbsp;</p>
                   <p id="logo">ScriptStud.io</p>
                   <p id="logo-ends"> &nbsp;/&#62;</p>
               </div>
+              </Link>
               {/* start of nav link items - christian  */}
               <div id="nav-items" className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
                 {/* <div id="nav-logo" className="flex-shrink-0 flex items-center">

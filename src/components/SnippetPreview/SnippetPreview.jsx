@@ -1,6 +1,6 @@
 import './SnippetPreview.css';
 
-function SnippetPreview() {
+function SnippetPreview(props) {
     return <h2>This is the snippet preview component.</h2>
 }
 

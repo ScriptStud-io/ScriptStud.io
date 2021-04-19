@@ -2,10 +2,6 @@ import React from 'react';
 import './CreateSnippetPage.css';
 import CreateSnippetForm from '../../components/CreateSnippetForm/CreateSnippetForm'
 
-// import PageHeader from '../../components/PageHeader/PageHeader';
-// import PageFooter from '../../components/PageFooter/PageFooter';
-// import SideNav from '../../components/SideNav/SideNav';
-
 const CreateSnippetPage = (props) => {
     
         return ( 

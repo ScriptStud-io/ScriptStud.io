@@ -1,16 +1,19 @@
-import './EditSnippetPage.css';
-import PageHeader from '../../components/PageHeader/PageHeader';
-import PageFooter from '../../components/PageFooter/PageFooter';
-import SideNav from '../../components/SideNav/SideNav';
-
-
 import React from 'react';
+import './EditSnippetPage.css';
+import EditSnippetForm from '../../components/EditSnippetForm/EditSnippetForm'
 
-class EditSnippetPage extends React.Component {
-    state = {  }
-    render() { 
-        return ( <h2>EditSnippetPage</h2> );
-    }
+const EditSnippetPage = (props) => {
+    
+    return ( 
+        <>
+            <div className='EditSnippetPage'>
+                <EditSnippetForm
+                handleAddSnippet={props.handleUpdateSnippet}
+                user={props.user} />
+            </div>
+        </>
+     );
 }
+
 
 export default EditSnippetPage;

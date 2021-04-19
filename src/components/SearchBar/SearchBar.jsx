@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import * as snippetAPI from '../../services/snippets-api'
 import './SearchBar.css';
 
 function SearchBar() {
