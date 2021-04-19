@@ -23,7 +23,7 @@ export function deleteOne(id) {
         method: 'DELETE',
         headers: {'Authorization': `Bearer ${tokenService.getToken()}`},
     }, {mode: 'cors'})
-        .then(res => res.json())
+    .then(res => res.json())
 }
 
 export function update(snippet) {
