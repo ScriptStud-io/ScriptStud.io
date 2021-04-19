@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 // TODO: add ability to save new snippet to Snippet Schema DB
 // TODO: update generic and sample inputs to look like code syntax (codemirror, react syntax highlighter? )
 // TODO: update tag input(s) with parsing functionality
-// TODO: add styling (Jessica)
 
 
 class EditSnippetForm extends Component {
