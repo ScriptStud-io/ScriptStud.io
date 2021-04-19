@@ -105,6 +105,7 @@ class App extends Component {
             />
           )}
         />
+        {/* unused route atm */}
         <Route 
           exact
           path="/users"
@@ -121,10 +122,18 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
-        <Route 	path='/edit-snip' render={()=>
-          <EditSnippetPage />}
-        />
-        <Route 	path='/search' render={()=>
+        <Route path='/snippet/edit' render={({location})=>
+          authService.getUser() ?
+          <EditSnippetPage
+            user={this.state.user}
+            location={location}
+            handleUpdateSnippet={this.handleUpdateSnippet}
+          />
+          :
+          <Redirect to='/login' />
+        }/>
+        <Route path='/search' render={()=>
+        
           <SearchResultsPage />}
         />
         <PageFooter />

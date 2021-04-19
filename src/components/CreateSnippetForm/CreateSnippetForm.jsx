@@ -4,9 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import * as snippetAPI from '../../services/snippets-api'
 
-// * 1st Iteration of Create Snippet Form, 4/13/21, Christian Mosley
-// ! form is not tied to any routes, so testing is not possible 
-// TODO: add ability to save new snippet to Snippet Schema DB
+// * 2nd Iteration of Create Snippet Form, 4/19/21, Christian Mosley
 // TODO: update generic and sample inputs to look like code syntax (codemirror, react syntax highlighter? )
 // TODO: update tag input(s) with parsing functionality
 
@@ -169,10 +167,12 @@ export default function CreateSnippetForm(props){
                         </div>
                         </div> 
                         <button 
+                        type="submit"
+                        disabled={formInvalid}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         type='submit'
                         disabled={state.formInvalid}
-                        >ADD Snippet</button>        
+                        >CREATE</button>        
                     </div>
                     </form>
                     {/* end of input form */}
