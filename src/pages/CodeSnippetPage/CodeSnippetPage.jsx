@@ -11,10 +11,10 @@ class CodeSnippetPage extends React.Component {
     render() { 
         return (
             <main>
-                <h2>CodeSnippetPage</h2>
+                <Snippet />
             </main>
         );
     }
 }
- 
+
 export default CodeSnippetPage;
