@@ -39,6 +39,34 @@ class App extends Component {
     }), () => this.props.history.push('/snippets'));
   }
 
+  handleDeleteSnippet = async id => {
+    if(authService.getUser()){
+      await snippetAPI.deleteOne(id);
+      this.setState(state => ({
+        snippets: state.snippets.filter(m => m._id !== id)
+      }), () => this.props.history.push('/snippets'));
+    } else {
+      this.props.history.push('/login')
+    }
+  }
+
+  handleUpdateSnippet = async updatedSnippetData => {
+    const updatedSnippet = await snippetAPI.update(updatedSnippetData);
+    updatedSnippet.addedBy = {name: this.state.user.name, _id: this.state.user._id}
+    const newSnippetsArray = this.state.snippets.map(m => 
+      m._id === updatedSnippet._id ? updatedSnippet : m
+    );
+    this.setState(
+      {snippets: newSnippetsArray},
+      () => this.props.history.push('/snippets')
+    );
+  }
+  
+  async componentDidMount() {
+    const snippets = await snippetAPI.getAll();
+    this.setState({snippets})
+  }
+
   render() {
     const {user} = this.state
     return (
@@ -93,11 +121,11 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
-        <Route 	path='/edit-snip' 
-                render={()=><EditSnippetPage />}
+        <Route 	path='/edit-snip' render={()=>
+          <EditSnippetPage />}
         />
-        <Route 	path='/search' 
-                render={()=><SearchResultsPage />}
+        <Route 	path='/search' render={()=>
+          <SearchResultsPage />}
         />
         <PageFooter />
       </>
