@@ -1,6 +1,9 @@
+/* these main font family designations are leaking to the splash page styles */
+
 main {
     color: #ADB5BD;
-    font-family: monospace !important;
+    font-family: monospace;
+    /* !important; this is overwriting all main sections in app with this font */ 
 }
 
 main h1, main h2 {
