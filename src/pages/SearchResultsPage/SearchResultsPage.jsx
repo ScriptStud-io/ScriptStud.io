@@ -20,7 +20,7 @@ const SearchResultsPage = (props) => {
 
     return (
         <>
-            {allSnippets.map((snip, idx) => <SnippetPreview key={idx} props={snip} />)}
+            {allSnippets.map((snip, idx) => <SnippetPreview key={idx} data={snip} />)}
         </>
     );
 }
