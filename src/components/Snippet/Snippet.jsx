@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import * as snippetAPI from '../../services/snippets-api';
 
 function Snippet(props) {
-    console.log(`props.match.params: ${JSON.stringify(props.snipId.snipid)}`)
+    console.log(`props.snipId.snipid: ${JSON.stringify(props.snipId.snipid)}`)
 
     const history = useHistory();
 
@@ -12,7 +12,7 @@ function Snippet(props) {
         console.log(`getSnippet results: ${await snippetAPI.getOne(snippetId)}`);
     }
 
-    getSnippet(JSON.stringify(props.snipId.snipid))
+    getSnippet(props.snipId.snipid)
 
     return (
         <main>

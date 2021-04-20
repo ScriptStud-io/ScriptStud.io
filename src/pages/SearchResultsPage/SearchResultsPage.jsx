@@ -1,17 +1,48 @@
 import './SearchResultsPage.css';
-import PageHeader from '../../components/PageHeader/PageHeader';
-import PageFooter from '../../components/PageFooter/PageFooter';
-import SideNav from '../../components/SideNav/SideNav';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import React, { useState, useEffect, useRef  } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import * as snippetAPI from '../../services/snippets-api';
 import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
+import userEvent from '@testing-library/user-event';
 
-import React from 'react';
+const SearchResultsPage = (props) => {
 
-class SearchResultsPage extends React.Component {
-    state = {  }
-    render() { 
-        return ( <h2>SearchResultsPage</h2> );
-    }
+    let [allSnippets, getAllSnippets] = useState({});
+
+    useEffect(() => {
+        if (props.search === 'all') {
+            //TODO: check if state is currently empty
+            console.log('hooray!!!!!!');
+            getAllSnippets(allSnippets = snippetAPI.getAll());
+            console.log(allSnippets)
+        }
+    })
+
+    // useEffect(() => {
+    //     (async function(){
+    //       const tvshows = await tvshowAPI.getAll();
+    //       setTvshows(tvshows);
+    //     })();
+    //   }, [])
+
+
+    return (
+        <>
+            <SnippetPreview />
+            <SnippetPreview />
+            <SnippetPreview />
+            <SnippetPreview />
+        </>
+    );
 }
+
+// class SearchResultsPage extends React.Component {
+//     state = {  }
+
+
+//     render() { 
+//         return ( <h2>SearchResultsPage</h2> );
+//     }
+// }
 
 export default SearchResultsPage;

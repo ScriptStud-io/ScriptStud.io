@@ -65,6 +65,7 @@ class App extends Component {
   
   async componentDidMount() {
     const snippets = await snippetAPI.getAll();
+    console.log('componentDidMount')
     this.setState({snippets})
   }
 
@@ -92,6 +93,16 @@ class App extends Component {
         </Switch>
         <Switch>
           <Route  exact path='/search/all'
+                  render={()=><SearchResultsPage search='all' />}
+          />
+          //TODO: delete this later it's just a placeholder
+          //TODO: ...or redirect to splash page with search
+          //TODO: ...or maybe an advanced search options page?
+          <Route  exact path='/search'
+                  render={()=><SearchResultsPage  />}
+          />
+          //TODO: main search sends selected tech as prop
+          <Route  path='/search/:tech'
                   render={()=><SearchResultsPage />}
           />
         </Switch>
@@ -142,10 +153,7 @@ class App extends Component {
           :
           <Redirect to='/login' />
         }/>
-        <Route path='/search' render={()=>
-        
-          <SearchResultsPage />}
-        />
+
         <PageFooter />
       </>
     );
