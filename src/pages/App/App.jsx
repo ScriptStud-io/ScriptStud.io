@@ -83,6 +83,7 @@ class App extends Component {
             </main>
           )}
         />
+
         <Switch>
           <Route 	exact path='/snip' 
                   render={(props)=><CodeSnippetPage {...props} />} 
@@ -95,6 +96,7 @@ class App extends Component {
           <Route  exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
           />
+          
           //TODO: delete this later it's just a placeholder
           //TODO: ...or redirect to splash page with search
           //TODO: ...or maybe an advanced search options page?

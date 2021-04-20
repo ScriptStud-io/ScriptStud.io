@@ -1,14 +1,15 @@
 import './CodeSnippetPage.css';
-import PageHeader from '../../components/PageHeader/PageHeader';
-import PageFooter from '../../components/PageFooter/PageFooter';
-import SideNav from '../../components/SideNav/SideNav';
 import Snippet from '../../components/Snippet/Snippet';
 
 import React from 'react';
 
-function CodeSnippetPage(props) {
+const CodeSnippetPage = props => {
     console.log ('hello world!!!!!!!!')
     console.log(`props.match: ${JSON.stringify(props.match)}`)
+
+
+
+
     return (
         <main>
             <Snippet snipId={props.match.params} />

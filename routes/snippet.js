@@ -3,8 +3,7 @@ const snippetsCtrl = require('../controllers/snippets');
 
 // Public Routes
 router.get('/', snippetsCtrl.index);
-router.get('/snip/:id', snippetsCtrl.getOneSnip)
-router.get('/api/snippets', snippetsCtrl.index)
+router.get('/:id', snippetsCtrl.getOneSnip);
 
 // Protected Routes
 router.use(require('../config/auth'));

@@ -3,9 +3,8 @@ import React, { useState, useEffect, useRef  } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import * as snippetAPI from '../../services/snippets-api';
 import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
-import userEvent from '@testing-library/user-event';
 
-const SearchResultsPage = (props) => {
+const SearchResultsPage = props => {
 
     const [allSnippets, getAllSnippets] = useState([]);
 
