@@ -13,11 +13,12 @@ const navigation = [
   { name: 'Sign Up', href: '/signup', current: false },
 ]
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PageHeader() {
+export default function PageHeader(props) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -47,7 +48,7 @@ export default function PageHeader() {
                 {/* <div id="nav-logo" className="flex-shrink-0 flex items-center">
                   <p id="logo-ends">&#60;&nbsp;</p>
                   <p id="logo">ScriptStud.io</p>
-                  <p id="logo-ends"> &nbsp;/&#62;</p>
+                  <p id="logo-ends"> &nbsp;/&62;</p>
                 </div> */}
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
