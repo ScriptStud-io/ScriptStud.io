@@ -73,10 +73,8 @@ class App extends Component {
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
         {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
-        <Route
-          exact
-          path="/"
-          render={() => (
+        <Route  exact path="/"
+                render={() => (
             <main>
               <h1>Welcome. This is an authorization template for Script Stud.io</h1>
             </main>
@@ -86,11 +84,13 @@ class App extends Component {
           <Route 	exact path='/snip' 
                   render={(props)=><CodeSnippetPage {...props} />} 
           />
-          <Route 	exact path='/snip/all' 
-                  render={(props)=><CodeSnippetPage {...props} />} 
-          />
           <Route 	exact path='/snip/:snipid' 
                   render={(props)=><CodeSnippetPage {...props} />} 
+          />
+        </Switch>
+        <Switch>
+          <Route  exact path='/search/all'
+                  render={()=><SearchResultsPage />}
           />
         </Switch>
         <Route

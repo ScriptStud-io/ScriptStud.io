@@ -14,7 +14,7 @@ export function create(snippet) {
 }
 
 export function getAll() {
-    return fetch(`${BASE_URL}/snip/all`, {mode: 'cors'})
+    return fetch(`${BASE_URL}`, {mode: 'cors'})
     .then(res => res.json())
 }
 
