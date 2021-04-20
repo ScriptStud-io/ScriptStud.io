@@ -8,7 +8,7 @@ require('./config/database');
 
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/users');
-const snippetRouter = require('./routes/snippet')
+const snippetRouter = require('./routes/snippets')
 
 const cors = require('cors')
 

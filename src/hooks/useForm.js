@@ -5,11 +5,20 @@ export const useForm = (initialValues) => {
 
     return [
         values, 
-        e => {
-            setValues({
-                ...values, 
-                [e.target.name]: e.target.value
-            })
+        (e, name) => {
+            console.log('e, name:', e, name)
+            if(e.target) {
+                setValues({
+                    ...values, 
+                    [e.target.name]: e.target.value
+                })
+            }
+            else
+                setValues({
+                    ...values, 
+                    [name]: e
+                })
+
         }
     ]
 }

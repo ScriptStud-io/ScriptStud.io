@@ -11,21 +11,22 @@ export default function CodeEditor(props) {
                 placeholder="Insert Snippet"
                 mode="javascript"
                 theme="monokai"
-                name="sample"
+                name={props.name}
+                height="250px"
+                width="515px"
                 // onLoad={this.onLoad}
-                onChange={props.handleSampleChange}
+                onChange={(e) => props.handleChange(e, props.name)}
                 fontSize={16}
                 showPrintMargin={true}
                 showGutter={true}
                 highlightActiveLine={true}
-                value={props.sampleState.sample}
+                value={props.state[props.name]}
                 setOptions={{
                 enableBasicAutocompletion: false,
                 enableLiveAutocompletion: true,
                 enableSnippets: true,
                 showLineNumbers: true,
                 tabSize: 2,
-                maxLines: 20,
                 }}/>
         </div>
         )

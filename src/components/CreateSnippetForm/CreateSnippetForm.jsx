@@ -25,15 +25,16 @@ export default function CreateSnippetForm(props){
     const [state, handleChange] = useForm({
         title: "",
         purpose: "",  
-        generic: "", 
+        generic: "Template",
         notes: "",
-        sample: "", 
+        sample: "Insert Code", 
         tags: [],
     })
 
-    const [sampleState, handleSampleChange] = useCodeEditor({
-        sample: "Insert Code",
-    })
+    // const [sampleState, handleSampleChange] = useCodeEditor({
+        
+        
+    // })
 
     // function to handle snippet create via api
     async function handleAddSnippet(newSnippetData){
@@ -106,8 +107,8 @@ export default function CreateSnippetForm(props){
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Generic Form
                         </label>
-                        <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
+                         <div className="mt-1 sm:mt-0 sm:col-span-2">
+                            {/* <input
                             id="generic"
                             name="generic"
                             type="text"
@@ -117,10 +118,12 @@ export default function CreateSnippetForm(props){
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                            />
+                            />  */}
                             {/* syntax highlighter demo */}
-                            <SyntaxHighlighter sampleState={sampleState} />
-                        </div>
+                            <CodeEditor name="generic" handleChange={handleChange} state={state} />
+                            <br></br> 
+                            <SyntaxHighlighter name="generic" state={state}  />
+                        </div> 
                         
                         </div>
                         
@@ -150,9 +153,11 @@ export default function CreateSnippetForm(props){
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                         
                         {/*  react ace editor demo */}
-                        <CodeEditor handleSampleChange={handleSampleChange} sampleState={sampleState} /> 
+                        
+                        <CodeEditor name="sample" handleChange={handleChange} state={state} /> 
                         <br></br>
-                        <SyntaxHighlighter sampleState={sampleState} />
+                        <SyntaxHighlighter name="sample" state={state} />
+                        
                         </div>
                         </div>
                         

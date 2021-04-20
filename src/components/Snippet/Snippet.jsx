@@ -2,6 +2,7 @@ import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import * as snippetAPI from '../../services/snippets-api';
+import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
 
 function Snippet(props) {
     console.log(`props.match.params: ${JSON.stringify(props.snipId.snipid)}`)
@@ -45,7 +46,8 @@ function Snippet(props) {
                         <h2>Generic Form</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                {/* this syntax component will accept the state.generic prop */}
+                    {/* <SyntaxHighlighter name="generic" state={state.generic} /> */}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -63,7 +65,8 @@ function Snippet(props) {
                     <h2>Coded<br></br>Example</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                {/* this syntax component will accept the state.sample prop */}
+                    {/* <SyntaxHighlighter  /> */}
                     </Grid.Column>
                 </Grid.Row>
 
