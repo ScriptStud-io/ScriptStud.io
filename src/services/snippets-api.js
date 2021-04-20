@@ -21,7 +21,6 @@ export function getAll() {
 export function getOne(id) {
     return fetch(`${BASE_URL}${id}`, {mode: 'cors'})
         .then(res => res.json())
-        .then(result => console.log(`services data: ${result}`))
 }
 
 export function deleteOne(id) {

@@ -1,5 +1,5 @@
 import './SearchResultsPage.css';
-import React, { useState, useEffect, useRef  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import * as snippetAPI from '../../services/snippets-api';
 import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';

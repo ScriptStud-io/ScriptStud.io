@@ -29,6 +29,9 @@ function index(req,res) {
 
 function getOneSnip(req, res) {
   console.log(`snip ID in URL is: ${req.params.id}`);
+  Snippet.findById(req.params.id)
+    .then(snippet => res.json(snippet))
+    .catch(err => res.json(err))
 }
 
 function create(req, res) {
