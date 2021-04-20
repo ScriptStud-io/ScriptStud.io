@@ -7,42 +7,22 @@ import userEvent from '@testing-library/user-event';
 
 const SearchResultsPage = (props) => {
 
-    let [allSnippets, getAllSnippets] = useState({});
+    const [allSnippets, getAllSnippets] = useState([]);
 
     useEffect(() => {
-        if (props.search === 'all') {
-            //TODO: check if state is currently empty
-            console.log('hooray!!!!!!');
-            getAllSnippets(allSnippets = snippetAPI.getAll());
-            console.log(allSnippets)
-        }
-    })
+        (async function() {
+            const snippets = await snippetAPI.getAll();
+            getAllSnippets(snippets);
+        })();
+    }, [])
 
-    // useEffect(() => {
-    //     (async function(){
-    //       const tvshows = await tvshowAPI.getAll();
-    //       setTvshows(tvshows);
-    //     })();
-    //   }, [])
-
+    console.log('allSnippets: ', allSnippets)
 
     return (
         <>
-            <SnippetPreview />
-            <SnippetPreview />
-            <SnippetPreview />
-            <SnippetPreview />
+            {allSnippets.map((snip, idx) => <SnippetPreview key={idx} props={snip} />)}
         </>
     );
 }
-
-// class SearchResultsPage extends React.Component {
-//     state = {  }
-
-
-//     render() { 
-//         return ( <h2>SearchResultsPage</h2> );
-//     }
-// }
 
 export default SearchResultsPage;
