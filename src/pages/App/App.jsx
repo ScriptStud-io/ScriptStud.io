@@ -65,8 +65,7 @@ class App extends Component {
   
   async componentDidMount() {
     const snippets = await snippetAPI.getAll();
-    console.log('componentDidMount')
-    this.setState({snippets})
+    this.setState({snippets});
   }
 
   render() {

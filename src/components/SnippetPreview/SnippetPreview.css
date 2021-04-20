@@ -21,7 +21,8 @@
 
 .snip-preview-content {
     border: 3px solid aqua;
-    width: calc(100% - 90px)
+    width: calc(100% - 90px);
+    text-align: left;
 }
 
 .snip-preview-title {
