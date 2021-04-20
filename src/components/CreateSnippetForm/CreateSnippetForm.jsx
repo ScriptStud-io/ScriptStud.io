@@ -4,13 +4,14 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CodeEditor from '../CodeEditor/CodeEditor'
+import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 
-// * 2nd Iteration of Create Snippet Form, 4/19/21, Christian Mosley
-// TODO: update generic and sample inputs to look like code syntax (codemirror, react syntax highlighter? )
+// * 3rd Iteration of Create Snippet Form, 4/20/21, Christian Mosley
+// TODO: update generic input with its own editor/syntax highlighter (currently using sampleState for testing purposes)
 // TODO: update tag input(s) with parsing functionality
+// TODO: add form validation warning for invalid form 
+// TODO: fix create button disable state on form invalidity
 
 
 export default function CreateSnippetForm(props){
@@ -31,7 +32,7 @@ export default function CreateSnippetForm(props){
     })
 
     const [sampleState, handleSampleChange] = useCodeEditor({
-        sample: "some code",
+        sample: "Insert Code",
     })
 
     // function to handle snippet create via api
@@ -51,10 +52,8 @@ export default function CreateSnippetForm(props){
         handleAddSnippet(state)
     }
 
-    // find one snippet for view page
- 
-
     return ( 
+        <main>
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
                     <div>
@@ -120,7 +119,7 @@ export default function CreateSnippetForm(props){
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                             />
                             {/* syntax highlighter demo */}
-                            <SyntaxHighlighter language='javascript' style={dark}>{sampleState.sample}</SyntaxHighlighter>
+                            <SyntaxHighlighter sampleState={sampleState} />
                         </div>
                         
                         </div>
@@ -148,26 +147,18 @@ export default function CreateSnippetForm(props){
                         <label htmlFor="city" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Sample
                         </label>
-                        {/* <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
-                            type="text"
-                            name="sample"
-                            id="sample"
-                            autoComplete='sample'
-                            value={state.sample}
-                            onChange={handleChange}
-                            required
-                            pattern=".{2,}"
-                            className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                            /> */}
-                            {/*  react ace editor demo */}
-                        <CodeEditor handleSampleChange={handleSampleChange} sampleState={sampleState} />
-                        {/* </div> */}
+                        <div className="mt-1 sm:mt-0 sm:col-span-2">
+                        
+                        {/*  react ace editor demo */}
+                        <CodeEditor handleSampleChange={handleSampleChange} sampleState={sampleState} /> 
+                        <br></br>
+                        <SyntaxHighlighter sampleState={sampleState} />
                         </div>
-
+                        </div>
+                        
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label htmlFor="state" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                            Tags
+                            Tags: (seperate with commas)
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input
@@ -193,6 +184,7 @@ export default function CreateSnippetForm(props){
                     {/* end of input form */}
                 </div>
             </div>
+        </main>
         );
     }
  
