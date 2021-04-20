@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import Users from "../Users/Users"
@@ -10,7 +9,6 @@ import * as snippetAPI from '../../services/snippets-api'
 import CreateSnippetPage from "../CreateSnippetPage/CreateSnippetPage";
 import PageHeader from '../../components/PageHeader/PageHeader';
 import PageFooter from '../../components/PageFooter/PageFooter';
-import SideNav from '../../components/SideNav/SideNav';
 import CodeSnippetPage from '../CodeSnippetPage/CodeSnippetPage';
 import EditSnippetPage from '../EditSnippetPage/EditSnippetPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';

@@ -1,9 +1,11 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import * as snippetAPI from '../../services/snippets-api';
 
 function Snippet({snippet}) {
+    let history = useHistory();
+    const goBack = () => history.goBack();
+
     return (
         <main>
             <Grid celled>
@@ -63,6 +65,10 @@ function Snippet({snippet}) {
                     <Grid.Column className='snip-comp-info-field' width={10}>
                         {snippet.tags}
                     </Grid.Column>
+                </Grid.Row>
+                //TODO: We can use this row for any navigation/functional buttons
+                <Grid.Row>
+                    <button onClick={goBack}>Go Back</button>
                 </Grid.Row>
 
             </Grid>

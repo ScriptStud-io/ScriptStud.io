@@ -14,6 +14,8 @@ const CodeSnippetPage = props => {
         })();
     }, [props.match.params.snipid])
 
+
+
     return (
         <main>
             <Snippet snippet={CurrentSnippet} />
