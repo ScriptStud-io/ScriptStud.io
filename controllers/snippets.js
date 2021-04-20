@@ -2,7 +2,8 @@ const Snippet = require('../models/snippet')
 
 module.exports = {
   create,
-  index, 
+  index,
+  getOneSnip,
   delete: deleteOne,
   update,
 }
@@ -24,6 +25,10 @@ function index(req,res) {
   .populate('addedBy')
   .then(snippets => {res.json(snippets)})
   .catch(err => {res.json(err)})
+}
+
+function getOneSnip(req, res) {
+  console.log(`snip ID in URL is: ${req.params.id}`);
 }
 
 function create(req, res) {

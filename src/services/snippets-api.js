@@ -3,19 +3,25 @@ const BASE_URL = '/api/snippets/';
 
 export function create(snippet) {
     return fetch(BASE_URL, {
-          method: "POST",
-          headers: {
-              'content-type': 'application/json', 
-              'Authorization': `Bearer ${tokenService.getToken()}`
-          },
-          body: JSON.stringify(snippet)
+        method: "POST",
+        headers: {
+            'content-type': 'application/json', 
+            'Authorization': `Bearer ${tokenService.getToken()}`
+        },
+        body: JSON.stringify(snippet)
     }, {mode: "cors"})
     .then(res => res.json());
 }
 
 export function getAll() {
-    return fetch(BASE_URL, {mode: 'cors'})
+    return fetch(`${BASE_URL}`, {mode: 'cors'})
     .then(res => res.json())
+}
+
+export function getOne(id) {
+    return fetch(`${BASE_URL}/snip/${id}`, {mode: 'cors'})
+        .then(res => res.json())
+        .then(result => console.log(`services data: ${result}`))
 }
 
 export function deleteOne(id) {
