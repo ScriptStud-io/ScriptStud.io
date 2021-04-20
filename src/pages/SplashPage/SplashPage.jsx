@@ -32,6 +32,7 @@ const tags = [
 function SplashPage() {
     const tagList = tags;
     return (
+        <main>
         <form action='GET'>
             <h1>I am working with </h1>
             <select name='technology' id='tech-select'>
@@ -40,6 +41,7 @@ function SplashPage() {
             <br/>
             <input type='submit' value='Submit' />
         </form>
+        </main>
     );
 }
 

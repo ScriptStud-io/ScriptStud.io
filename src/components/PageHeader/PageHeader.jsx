@@ -7,8 +7,8 @@ import './PageHeader.css';
 
 
 const navigation = [
-  { name: 'My Snips', href: '#', current: true },
-  { name: 'Search Snips', href: '#', current: false },
+  { name: 'My Snips', href: '/userhub', current: true },
+  { name: 'Search Snips', href: '/search/all', current: false },
   { name: 'Login', href: '/login', current: false },
   { name: 'Sign Up', href: '/signup', current: false },
 ]
