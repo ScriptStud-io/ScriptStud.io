@@ -25,6 +25,10 @@ const tags = [
     'powershell'
 ]
 
+// TODO: this form will need to send a GET request to a MongoDB collection
+// TODO: "name" value in "select" will need to find a particular technology
+// TODO: load search results page with snippet previews that match tech searched
+
 function SplashPage() {
     const tagList = tags;
     return (
@@ -33,6 +37,8 @@ function SplashPage() {
             <select name='technology' id='tech-select'>
                 {tagList.map(tag => <option value={tag}>{tag}</option>)}
             </select>
+            <br/>
+            <input type='submit' value='Submit' />
         </form>
     );
 }
