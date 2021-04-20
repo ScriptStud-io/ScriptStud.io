@@ -12,6 +12,8 @@ export default function CodeEditor(props) {
                 mode="javascript"
                 theme="monokai"
                 name="sample"
+                height="250px"
+                width="515px"
                 // onLoad={this.onLoad}
                 onChange={props.handleSampleChange}
                 fontSize={16}
@@ -25,7 +27,6 @@ export default function CodeEditor(props) {
                 enableSnippets: true,
                 showLineNumbers: true,
                 tabSize: 2,
-                maxLines: 20,
                 }}/>
         </div>
         )

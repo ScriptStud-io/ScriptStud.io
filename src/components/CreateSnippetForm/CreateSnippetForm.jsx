@@ -106,8 +106,8 @@ export default function CreateSnippetForm(props){
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Generic Form
                         </label>
-                        <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
+                         <div className="mt-1 sm:mt-0 sm:col-span-2">
+                            {/* <input
                             id="generic"
                             name="generic"
                             type="text"
@@ -117,10 +117,12 @@ export default function CreateSnippetForm(props){
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                            />
+                            />  */}
                             {/* syntax highlighter demo */}
+                            <CodeEditor handleSampleChange={handleSampleChange} sampleState={sampleState} />
+                            <br></br> 
                             <SyntaxHighlighter sampleState={sampleState} />
-                        </div>
+                        </div> 
                         
                         </div>
                         
