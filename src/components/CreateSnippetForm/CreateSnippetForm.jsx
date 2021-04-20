@@ -2,7 +2,11 @@ import './CreateSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
+import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import CodeEditor from '../CodeEditor/CodeEditor'
 
 // * 2nd Iteration of Create Snippet Form, 4/19/21, Christian Mosley
 // TODO: update generic and sample inputs to look like code syntax (codemirror, react syntax highlighter? )
@@ -26,6 +30,10 @@ export default function CreateSnippetForm(props){
         tags: [],
     })
 
+    const [sampleState, handleSampleChange] = useCodeEditor({
+        sample: "some code",
+    })
+
     // function to handle snippet create via api
     async function handleAddSnippet(newSnippetData){
         await snippetAPI.create(newSnippetData)
@@ -42,6 +50,8 @@ export default function CreateSnippetForm(props){
         e.preventDefault()
         handleAddSnippet(state)
     }
+
+    const codeSnippet = '(num) => num + 1';
 
     return ( 
             <div className="tbd">
@@ -92,6 +102,7 @@ export default function CreateSnippetForm(props){
                         </div>
 
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Generic Form
                         </label>
@@ -107,7 +118,10 @@ export default function CreateSnippetForm(props){
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                             />
+                            {/* syntax highlighter demo */}
+                            <SyntaxHighlighter language='javascript' style={dark}>{sampleState.sample}</SyntaxHighlighter>
                         </div>
+                        
                         </div>
                         
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -133,7 +147,7 @@ export default function CreateSnippetForm(props){
                         <label htmlFor="city" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Sample
                         </label>
-                        <div className="mt-1 sm:mt-0 sm:col-span-2">
+                        {/* <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input
                             type="text"
                             name="sample"
@@ -144,8 +158,10 @@ export default function CreateSnippetForm(props){
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
+                            /> */}
+                            {/*  react ace editor demo */}
+                        <CodeEditor handleSampleChange={handleSampleChange} sampleState={sampleState} />
+                        {/* </div> */}
                         </div>
 
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
