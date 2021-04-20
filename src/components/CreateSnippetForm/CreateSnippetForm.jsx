@@ -51,7 +51,8 @@ export default function CreateSnippetForm(props){
         handleAddSnippet(state)
     }
 
-    const codeSnippet = '(num) => num + 1';
+    // find one snippet for view page
+ 
 
     return ( 
             <div className="tbd">

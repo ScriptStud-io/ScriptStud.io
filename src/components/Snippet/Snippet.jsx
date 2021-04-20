@@ -1,9 +1,22 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+import * as snippetAPI from '../../services/snippets-api';
 
-function Snippet() {
+function Snippet(props) {
+    console.log(`props.match.params: ${JSON.stringify(props.snipId.snipid)}`)
+
+    const history = useHistory();
+
+    async function getSnippet(snippetId) {
+        console.log(`getSnippet results: ${await snippetAPI.getOne(snippetId)}`);
+    }
+
+    getSnippet(JSON.stringify(props.snipId.snipid))
+
     return (
         <main>
+            <h1>{JSON.stringify(props.snipId)}</h1>
             <Grid celled>
                 <Grid.Row id='snip-comp-title'>
                     <h1>Title</h1>

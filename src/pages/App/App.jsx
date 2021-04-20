@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Redirect} from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -14,6 +14,7 @@ import SideNav from '../../components/SideNav/SideNav';
 import CodeSnippetPage from '../CodeSnippetPage/CodeSnippetPage';
 import EditSnippetPage from '../EditSnippetPage/EditSnippetPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
+import SplashPage from '../SplashPage/SplashPage';
 
 class App extends Component {
   state = {
@@ -73,18 +74,27 @@ class App extends Component {
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
         {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
-        <Route
-          exact
-          path="/"
-          render={() => (
+        <Route  exact path="/"
+                render={() => (
             <main>
               <h1>Welcome. This is an authorization template for Script Stud.io</h1>
+              <SplashPage />
             </main>
           )}
         />
-        <Route 	path='/snip' 
-                render={()=><CodeSnippetPage />} 
-        />
+        <Switch>
+          <Route 	exact path='/snip' 
+                  render={(props)=><CodeSnippetPage {...props} />} 
+          />
+          <Route 	exact path='/snip/:snipid' 
+                  render={(props)=><CodeSnippetPage {...props} />} 
+          />
+        </Switch>
+        <Switch>
+          <Route  exact path='/search/all'
+                  render={()=><SearchResultsPage />}
+          />
+        </Switch>
         <Route
           exact
           path="/signup"
