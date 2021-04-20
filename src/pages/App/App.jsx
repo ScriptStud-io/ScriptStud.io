@@ -14,6 +14,7 @@ import SideNav from '../../components/SideNav/SideNav';
 import CodeSnippetPage from '../CodeSnippetPage/CodeSnippetPage';
 import EditSnippetPage from '../EditSnippetPage/EditSnippetPage';
 import SearchResultsPage from '../SearchResultsPage/SearchResultsPage';
+import SplashPage from '../SplashPage/SplashPage';
 
 class App extends Component {
   state = {
@@ -77,6 +78,7 @@ class App extends Component {
                 render={() => (
             <main>
               <h1>Welcome. This is an authorization template for Script Stud.io</h1>
+              <SplashPage />
             </main>
           )}
         />
