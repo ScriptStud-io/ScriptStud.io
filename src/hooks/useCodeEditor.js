@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 export const useCodeEditor = (initialSamples) => {
-    const [sample, setSamples] = useState(initialSamples)
+    const [samples, setSamples] = useState(initialSamples)
 
     return [
-        sample, 
-        e => {
-            console.log('e:', e)
+        samples, 
+        (name, e) => {
             setSamples({
-                sample: e
+                ...samples,
+                [name]: e
             })
         }
     ]
