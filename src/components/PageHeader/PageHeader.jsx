@@ -15,7 +15,6 @@ const navigation = [
   { name: 'Sign Up', href: '/signup', current: false },
 ]
 
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -136,6 +135,7 @@ export default function PageHeader(props) {
                               </a>
                             )}
                           </Menu.Item>
+                          {/* TODO: [MARTY] add sign out funcitonality to sign out button */}
                           <Menu.Item>
                             {({ active }) => (
                               <a

@@ -71,7 +71,14 @@ function Snippet({snipdata}) {
                 </Grid.Row>
                 {/*TODO: We can use this row for any navigation/functional buttons*/}
                 <Grid.Row>
-                    <button onClick={goBack}>Go Back</button>
+                    <Grid.Column id='snip-comp-options' width={3}>
+                        <h2>Options</h2>
+                    </Grid.Column>
+                    <Grid.Column id='snip-comp-options-cell' className='snip-comp-info-field' width={10}>
+                        <button className='snippet-options-button' onClick={goBack}>Go Back</button>
+                        <button className='snippet-options-button'>Edit Snippet</button>
+                        <button className='snippet-options-button'>Delete Snippet</button>
+                    </Grid.Column>
                 </Grid.Row>
 
             </Grid>
