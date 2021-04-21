@@ -66,7 +66,7 @@ function Snippet({snippet}) {
                         {snippet.tags}
                     </Grid.Column>
                 </Grid.Row>
-                //TODO: We can use this row for any navigation/functional buttons
+                {/*TODO: We can use this row for any navigation/functional buttons*/}
                 <Grid.Row>
                     <button onClick={goBack}>Go Back</button>
                 </Grid.Row>
