@@ -1,10 +1,9 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import * as snippetAPI from '../../services/snippets-api';
 import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
 
-function Snippet({snippet}) {
+function Snippet({snipdata}) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
@@ -12,7 +11,7 @@ function Snippet({snippet}) {
         <main>
             <Grid celled>
                 <Grid.Row id='snip-comp-title'>
-                    <h1>{snippet.title}</h1>
+                    <h1>{snipdata.title}</h1>
                 </Grid.Row>
 
                 <Grid.Row>
@@ -20,7 +19,7 @@ function Snippet({snippet}) {
                         <h2>Purpose</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snippet.purpose}
+                        {snipdata.purpose}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -48,7 +47,7 @@ function Snippet({snippet}) {
                         <h2>Guide</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snippet.notes}
+                        {snipdata.notes}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -67,7 +66,7 @@ function Snippet({snippet}) {
                         <h2>Tags</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snippet.tags}
+                        {snipdata.tags}
                     </Grid.Column>
                 </Grid.Row>
                 {/*TODO: We can use this row for any navigation/functional buttons*/}

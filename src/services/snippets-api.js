@@ -15,7 +15,7 @@ export function create(snippet) {
 
 export function getAll() {
     return fetch(`${BASE_URL}`, {mode: 'cors'})
-    .then(res => res.json())
+        .then(res => res.json())
 }
 
 export function getOne(id) {

@@ -1,20 +1,25 @@
 import './SearchResultsPage.css';
+import React, { useState, useEffect } from 'react';
+import * as snippetAPI from '../../services/snippets-api';
+import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
 
 const SearchResultsPage = props => {
 
-    const [allSnippets, getAllSnippets] = useState([]);
+    const [allSnippets, setAllSnippets] = useState([]);
 
     useEffect(() => {
         (async function() {
             const snippets = await snippetAPI.getAll();
-            getAllSnippets(snippets);
+            setAllSnippets(snippets);
         })();
     }, [])
 
+    console.log('allSnippets: ', allSnippets)
+
     return (
-        <main>
+        <>
             {allSnippets.map((snip, idx) => <SnippetPreview key={idx} data={snip} />)}
-        </main>
+        </>
     );
 }
 

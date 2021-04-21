@@ -23,7 +23,7 @@ function deleteOne(req,res) {
 function index(req,res) {
   Snippet.find({})
     .populate('addedBy')
-    .then(snippets => {res.json(snippets)})
+    .then(snippets => res.json(snippets))
     .catch(err => {res.json(err)})
 }                                 
 
