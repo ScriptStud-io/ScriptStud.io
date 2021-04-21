@@ -2,8 +2,8 @@ const router = require('express').Router();
 const snippetsCtrl = require('../controllers/snippets');
 
 // Public Routes
-router.get('/', snippetsCtrl.index);
-router.get('/:id', snippetsCtrl.getOneSnip);
+router.get('/', snippetsCtrl.index); 
+router.get('/snip/:id', snippetsCtrl.getOneSnip)
 
 // Protected Routes
 router.use(require('../config/auth'));

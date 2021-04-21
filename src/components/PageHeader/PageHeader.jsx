@@ -5,19 +5,22 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
+// TODO: the links inside the avatar dropdown are placeholders for now to clear warnings in terminal 
+// TODO: fix the logo covering up hamburger menu on mobile view "shrink the webpage and youll see what I mean" -Jessica could you take a crack at this? 
 
 const navigation = [
-  { name: 'My Snips', href: '#', current: true },
-  { name: 'Search Snips', href: '#', current: false },
+  { name: 'My Snips', href: '/userhub', current: true },
+  { name: 'Search Snips', href: '/search/all', current: false },
   { name: 'Login', href: '/login', current: false },
   { name: 'Sign Up', href: '/signup', current: false },
 ]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PageHeader() {
+export default function PageHeader(props) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -47,7 +50,7 @@ export default function PageHeader() {
                 {/* <div id="nav-logo" className="flex-shrink-0 flex items-center">
                   <p id="logo-ends">&#60;&nbsp;</p>
                   <p id="logo">ScriptStud.io</p>
-                  <p id="logo-ends"> &nbsp;/&#62;</p>
+                  <p id="logo-ends"> &nbsp;/&62;</p>
                 </div> */}
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
@@ -110,7 +113,7 @@ export default function PageHeader() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                href="/profile"
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
@@ -123,7 +126,7 @@ export default function PageHeader() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                href="/settings"
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
@@ -136,7 +139,7 @@ export default function PageHeader() {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                href="/signout"
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'

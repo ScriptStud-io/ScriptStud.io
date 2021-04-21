@@ -1,6 +1,8 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
+import * as snippetAPI from '../../services/snippets-api';
+import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
 
 function Snippet({snippet}) {
     let history = useHistory();
@@ -36,7 +38,8 @@ function Snippet({snippet}) {
                         <h2>Generic Form</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snippet.generic}
+                {/* this syntax component will accept the state.generic prop */}
+                    {/* <SyntaxHighlighter name="generic" state={state.generic} /> */}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -54,7 +57,8 @@ function Snippet({snippet}) {
                     <h2>Coded<br></br>Example</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snippet.sample}
+                {/* this syntax component will accept the state.sample prop */}
+                    {/* <SyntaxHighlighter  /> */}
                     </Grid.Column>
                 </Grid.Row>
 

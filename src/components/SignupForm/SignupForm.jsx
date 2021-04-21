@@ -1,12 +1,4 @@
-/** IMPORTANT!
- *    This file is here because it came with the
- *    original file we cloned from General Assembly.
- *    For the time being we are NOT planning to
- *    use this file.
- */
-
 import './SignupForm.css';
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/authService";

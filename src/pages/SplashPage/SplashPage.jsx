@@ -34,6 +34,7 @@ const tags = [
 function SplashPage() {
     const tagList = tags;
     return (
+        <main>
         <form action='GET'>
             <div id='working-with-line'>
             <h1>I am working with </h1>
@@ -44,6 +45,7 @@ function SplashPage() {
             <input type='submit' value='Submit' />
             
         </form>
+        </main>
     );
 }
 

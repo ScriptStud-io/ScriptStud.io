@@ -12,8 +12,7 @@ const EditSnippetPage = (props) => {
                 user={props.user} />
             </div>
         </>
-     );
+    );
 }
-
 
 export default EditSnippetPage;
