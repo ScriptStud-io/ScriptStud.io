@@ -1,5 +1,6 @@
 import './SnippetPreview.css';
 import React from 'react';
+import SnippetPreviewToolBar from '../SnippetToolBar/SnippetToolBar'
 
 function SnippetPreview(props) {
 
@@ -16,7 +17,7 @@ function SnippetPreview(props) {
                 <div className='snip-preview-title'>{props.data.title} <a href={viewLinkUrl}>[View this Snippet]</a></div>
                 <div>{previewText}</div>
                 <div>Created by: {props.data.addedBy.name} | Created on: {createdAt} | Last Edited: {updatedAt}</div>
-
+                <SnippetPreviewToolBar/>
             </div>
         </article>
     );
