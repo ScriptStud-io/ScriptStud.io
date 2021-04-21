@@ -21,14 +21,17 @@ function deleteOne(req,res) {
 }
 
 function index(req,res) {
-  Snippet.find([])
-  .populate('addedBy')
-  .then(snippets => {res.json(snippets)})
-  .catch(err => {res.json(err)})
-}
+  Snippet.find({})
+    .populate('addedBy')
+    .then(snippets => res.json(snippets))
+    .catch(err => {res.json(err)})
+}                                 
 
 function getOneSnip(req, res) {
   console.log(`snip ID in URL is: ${req.params.id}`);
+  Snippet.findById(req.params.id)
+    .then(snippet => res.json(snippet))
+    .catch(err => res.json(err))
 }
 
 function create(req, res) {

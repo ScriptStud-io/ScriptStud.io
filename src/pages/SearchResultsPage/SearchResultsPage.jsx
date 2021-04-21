@@ -1,12 +1,26 @@
 import './SearchResultsPage.css';
+import React, { useState, useEffect } from 'react';
+import * as snippetAPI from '../../services/snippets-api';
+import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
 
-import React from 'react';
+const SearchResultsPage = props => {
 
-class SearchResultsPage extends React.Component {
-    state = {  }
-    render() { 
-        return ( <h2>SearchResultsPage</h2> );
-    }
+    const [allSnippets, setAllSnippets] = useState([]);
+
+    useEffect(() => {
+        (async function() {
+            const snippets = await snippetAPI.getAll();
+            setAllSnippets(snippets);
+        })();
+    }, [])
+
+    console.log('allSnippets: ', allSnippets)
+
+    return (
+        <>
+            {allSnippets.map((snip, idx) => <SnippetPreview key={idx} data={snip} />)}
+        </>
+    );
 }
 
 export default SearchResultsPage;

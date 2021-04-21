@@ -1,26 +1,17 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import * as snippetAPI from '../../services/snippets-api';
 import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
 
-function Snippet(props) {
-    console.log(`props.match.params: ${JSON.stringify(props.snipId.snipid)}`)
-
-    const history = useHistory();
-
-    async function getSnippet(snippetId) {
-        console.log(`getSnippet results: ${await snippetAPI.getOne(snippetId)}`);
-    }
-
-    getSnippet(JSON.stringify(props.snipId.snipid))
+function Snippet({snipdata}) {
+    let history = useHistory();
+    const goBack = () => history.goBack();
 
     return (
         <main>
-            <h1>{JSON.stringify(props.snipId)}</h1>
             <Grid celled>
                 <Grid.Row id='snip-comp-title'>
-                    <h1>Title</h1>
+                    <h1>{snipdata.title}</h1>
                 </Grid.Row>
 
                 <Grid.Row>
@@ -28,7 +19,7 @@ function Snippet(props) {
                         <h2>Purpose</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                        {snipdata.purpose}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -37,7 +28,7 @@ function Snippet(props) {
                         <h2>Languages<br></br>Frameworks<br></br>Libraries</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                        We currently don't have anything for this, should we get rid of it?
                     </Grid.Column>
                 </Grid.Row>
 
@@ -56,7 +47,7 @@ function Snippet(props) {
                         <h2>Guide</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                        {snipdata.notes}
                     </Grid.Column>
                 </Grid.Row>
 
@@ -75,8 +66,12 @@ function Snippet(props) {
                         <h2>Tags</h2>
                     </Grid.Column>
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        Lorem Ipsum
+                        {snipdata.tags}
                     </Grid.Column>
+                </Grid.Row>
+                {/*TODO: We can use this row for any navigation/functional buttons*/}
+                <Grid.Row>
+                    <button onClick={goBack}>Go Back</button>
                 </Grid.Row>
 
             </Grid>

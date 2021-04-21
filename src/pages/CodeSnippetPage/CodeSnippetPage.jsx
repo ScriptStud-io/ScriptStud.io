@@ -1,29 +1,24 @@
 import './CodeSnippetPage.css';
 import Snippet from '../../components/Snippet/Snippet';
+import * as snippetAPI from '../../services/snippets-api';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function CodeSnippetPage(props) {
-    console.log ('hello world!!!!!!!!')
-    console.log(`props.match: ${JSON.stringify(props.match)}`)
+const CodeSnippetPage = props => {
+    const [CurrentSnippet, setSnippet] = useState({});
+
+    useEffect(() => {
+        (async function() {
+            const snippet = await snippetAPI.getOne(props.match.params.snipid);
+            setSnippet(snippet);
+        })();
+    }, [props.match.params.snipid]);
+
     return (
         <main>
-            <Snippet snipId={props.match.params} />
+            <Snippet snipdata={CurrentSnippet} />
         </main>
     );
 }
-
-
-
-// class CodeSnippetPage extends React.Component {
-//     state = {  }
-//     render() { 
-//         return (
-//             <main>
-//                 <Snippet />
-//             </main>
-//         );
-//     }
-// }
 
 export default CodeSnippetPage;

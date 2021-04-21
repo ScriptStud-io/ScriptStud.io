@@ -7,4 +7,3 @@ export default function SyntaxHighlighter(props) {
     <Prism language='javascript' style={dark}>{props.state[props.name]}</Prism>
     )
 }
-
