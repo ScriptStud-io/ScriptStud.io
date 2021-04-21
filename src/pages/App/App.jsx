@@ -94,13 +94,13 @@ class App extends Component {
                   render={()=><SearchResultsPage search='all' />}
           />
           
-          //TODO: delete this later it's just a placeholder
-          //TODO: ...or redirect to splash page with search
-          //TODO: ...or maybe an advanced search options page?
+          {/*TODO: delete this later it's just a placeholder
+          TODO: ...or redirect to splash page with search
+                TODO: ...or maybe an advanced search options page?*/}
           <Route  exact path='/search'
                   render={()=><SearchResultsPage  />}
           />
-          //TODO: main search sends selected tech as prop
+          {/*TODO: main search sends selected tech as prop*/}
           <Route  path='/search/:tech'
                   render={()=><SearchResultsPage />}
           />
@@ -160,13 +160,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-{/*
-<Route 	path='/new-snip' 
-    render={()=><CreateSnippetPage />}
-/>*/}
-
-
-
