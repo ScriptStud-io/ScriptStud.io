@@ -49,7 +49,7 @@ const navigation = {
   
   export default function Footer() {
     return (
-      <footer className="bg-white">
+      <footer id="footer" className="bg-white ">
         <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
           <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
             {navigation.main.map((item) => (
@@ -68,7 +68,7 @@ const navigation = {
               </a>
             ))}
           </div>
-          <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 ScriptStud.io, Inc. All rights reserved.</p>
+          <p className="mt-8 text-center text-base text-gray-400">&copy; 2021 ScriptStud.io, Inc. All rights reserved.</p>
         </div>
       </footer>
     )

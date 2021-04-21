@@ -13,6 +13,7 @@ export const useForm = (initialValues) => {
                     [e.target.name]: e.target.value
                 })
             }
+            // If statement expands hook to handle CodeEditor and SyntaxHighlighter dynamic state transfer
             else
                 setValues({
                     ...values, 
