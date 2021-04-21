@@ -2,10 +2,10 @@ import './CreateSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
 import CodeEditor from '../CodeEditor/CodeEditor'
 import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs'
 
 // * 3rd Iteration of Create Snippet Form, 4/20/21, Christian Mosley
 // TODO: update generic input with its own editor/syntax highlighter (currently using sampleState for testing purposes)
@@ -55,6 +55,7 @@ export default function CreateSnippetForm(props){
 
     return ( 
         <main>
+            <BreadCrumbs />
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
                     <div>
