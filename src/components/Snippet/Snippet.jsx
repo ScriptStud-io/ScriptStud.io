@@ -1,7 +1,6 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-
 import * as snippetAPI from '../../services/snippets-api';
 import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter";
 import SnippetToolBar from "../SnippetToolBar/SnippetToolBar"

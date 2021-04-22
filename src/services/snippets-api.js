@@ -32,6 +32,8 @@ export function deleteOne(id) {
 }
 
 export function update(snippet) {
+    console.log('update function triggered')
+    console.log('snippet:', snippet)
     return fetch(`${BASE_URL}${snippet._id}`, {
         method: "PUT", 
         headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
