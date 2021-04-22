@@ -74,22 +74,24 @@ class App extends Component {
     return (
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
-        {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
-        <Route  exact path="/"
-                render={() => (
-            <main>
-              <h1>Welcome. This is an authorization template for Script Stud.io</h1>
+
+        <Route 
+          exact path="/"
+          render={() => (
               <SplashPage />
-            </main>
           )}
         />
 
-        <Route 	exact path='/snip/:snipid' 
-                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} handleDeleteSnippet={this.handleDeleteSnippet} />}
+        <Route 
+          exact path='/snip/:snipid' 
+          render={(props)=>
+            <CodeSnippetPage {...props} 
+            currentUser={this.state.user} 
+            handleDeleteSnippet={this.handleDeleteSnippet} />}
         />
 
         <Switch>
-          <Route  exact path='/search/all'
+          <Route exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
           />
           {/*TODO: delete this later it's just a placeholder
@@ -141,13 +143,16 @@ class App extends Component {
             <Redirect to='/login' />
         } />
         <Route  exact path='/snip/edit/:id'
-                render={({match, location}) => authService.getUser() ? <EditSnippetPage  user={this.state.user}
-                                                                                  location={location}
-                                                                                  match={match}
-                                                                                  handleUpdateSnippet={this.handleUpdateSnippet}
-                                                                />
-          :
-          <Redirect to='/login' />
+                render={({match, location}) => 
+                authService.getUser() ? 
+                <EditSnippetPage  
+                  user={this.state.user}
+                  location={location}
+                  match={match}
+                  handleUpdateSnippet={this.handleUpdateSnippet}
+                />
+                :
+                <Redirect to='/login' />
         }/>
 
         <PageFooter />

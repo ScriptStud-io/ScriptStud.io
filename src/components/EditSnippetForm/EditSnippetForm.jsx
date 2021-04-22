@@ -1,6 +1,6 @@
 import './EditSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
@@ -15,6 +15,7 @@ import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 
 
 export default function EditSnippetForm(props){
+    const location = useLocation();
     //  allow us history access for routing 
     const history = useHistory();
     // initialize form as invalid
@@ -22,21 +23,8 @@ export default function EditSnippetForm(props){
     // initialize object for form validation
     const formRef = useRef()
     //  custom hook to initialize state
-    const [state, setState] = useForm(props.currentSnippet);
+    const [state, setState] = useForm(location.state.snippet);
 
-
-    console.log('edit props: ', props)
-
-    // const [sampleState, handleSampleChange] = useCodeEditor({
-        
-        
-    // })
-
-    // function to handle snippet create via api
-    // async function handleAddSnippet(newSnippetData){
-    //     await snippetAPI.create(newSnippetData)
-    //     history.push('/snippets')
-    // }
 
     // hook to check form validity 
     useEffect(() => {
@@ -46,8 +34,8 @@ export default function EditSnippetForm(props){
     // pass form data via submit to handleAddSnippet func 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log('statestate: ', state)
-        props.handleUpdateSnippet(state);
+        await snippetAPI.update(state)
+        history.push('/search/all')
     }
 
     console.log('AAA props: ', props)
@@ -122,7 +110,7 @@ export default function EditSnippetForm(props){
                             {/* syntax highlighter demo */}
                             <CodeEditor name="generic" setState={setState} state={state} initialData={props.currentSnippet.generic} />
                             <br></br> 
-                            <SyntaxHighlighter name="generic" state={state}  />
+                            {/* <SyntaxHighlighter name="generic" state={state}  /> */}
                         </div> 
                         
                         </div>
@@ -156,7 +144,7 @@ export default function EditSnippetForm(props){
                         
                         <CodeEditor name="sample" setState={setState} state={state} initialData={props.currentSnippet.sample} /> 
                         <br></br>
-                        <SyntaxHighlighter name="sample" state={state} />
+                        {/* <SyntaxHighlighter name="sample" state={state} /> */}
                         
                         </div>
                         </div>
