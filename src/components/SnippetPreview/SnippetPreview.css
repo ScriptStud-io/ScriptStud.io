@@ -1,11 +1,10 @@
 .snip-preview {
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
     height: 120px;
-
     margin: 15px;
     padding: 10px;
 
-    color: #ADB5BD;
+    color: #444242;
     font-family: monospace !important;
 
     display: flex;
@@ -13,14 +12,14 @@
 }
 
 .snip-preview-logo {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     height: 90px;
     width: 90px;
     margin-right: 25px;
 }
 
 .snip-preview-content {
-    border: 3px solid aqua;
+    /* border: 3px solid aqua; */
     width: calc(100% - 90px);
     text-align: left;
 }
@@ -29,4 +28,9 @@
     font-weight: bold;
     font-size: 22px;
     margin: 5px 10px 5px 0;
+}
+
+.snip-preview-bottom {
+    font-weight: bold;
+    font-size: 12px;
 }
