@@ -12,7 +12,6 @@ const CodeSnippetPage = props => {
         notes: "",
         sample: "", 
         tags: [],
-
     });
 
     useEffect(() => {
@@ -23,7 +22,6 @@ const CodeSnippetPage = props => {
     }, []);
     console.log('CurrentSnippet:', CurrentSnippet)
 
-    console.log('prosp: ', props)
 
     return (
         <main>
