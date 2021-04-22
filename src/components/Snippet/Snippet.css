@@ -1,5 +1,10 @@
 /* these main font family designations are leaking to the splash page styles */
 
+#test-top {
+    border-top: black, !important;
+    border-top-width: 5px, !important;
+}
+
 main {
     color: #ADB5BD;
     font-family: monospace;
@@ -16,34 +21,67 @@ main h2 {
 
 #snip-comp-title {
     color: #BC00DD;
+    font-size: 30px;
 }
 
 #snip-comp-purpose {
     color: #D00000;
+    font-size: 22px;
 }
 
 #snip-comp-lang {
     color: #7DD757;
+    font-size: 22px;
 }
 
 #snip-comp-genform {
     color: #FB8500;
+    font-size: 22px;
 }
 
 #snip-comp-guide {
     color: #64DFDF;
+    font-size: 22px;
 }
 
 #snip-comp-coded-exam {
     color: #FFC300;
+    font-size: 22px;
 }
 
 #snip-comp-tags {
     color: #F20089;
+    font-size: 22px;
 }
 
 .snip-comp-info-field {
     text-align: left;
     font-size: 16px;
     font-weight: bold;
+}
+
+#snip-comp-options {
+    color: #7209B7;
+    font-size: 22px;
+}
+
+#snip-comp-options-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.snippet-options-button {
+    margin-right: 20px;
+    width: 100px;
+    height: 70px;
+    background-color: #DCB1FB;
+    color: #7209B7;
+    font-weight: 900;
+    border: 3px solid #7209B7;
+    border-radius: 15px;
+}
+
+.snippet-options-button:hover {
+    border: 6px solid #7209B7;
 }

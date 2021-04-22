@@ -6,14 +6,15 @@ const CreateSnippetPage = (props) => {
     
     return ( 
         <>
-            <div className='CreateSnippetPage'>
-                <CreateSnippetForm
-                handleAddSnippet={props.handleAddSnippet}
-                user={props.user} />
-            </div>
+            <section>
+                <div className='w-3/4 mt-6 mx-auto'>
+                    <CreateSnippetForm
+                    handleAddSnippet={props.handleAddSnippet}
+                    user={props.user} />
+                </div>
+            </section>
         </>
     );
 }
-
 
 export default CreateSnippetPage;

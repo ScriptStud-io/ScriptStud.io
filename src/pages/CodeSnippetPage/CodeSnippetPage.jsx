@@ -12,13 +12,13 @@ const CodeSnippetPage = props => {
             const snippet = await snippetAPI.getOne(props.match.params.snipid);
             setSnippet(snippet);
         })();
-    }, [props.match.params.snipid])
+    }, [props.match.params.snipid]);
 
-
+    console.log('prosp: ', props)
 
     return (
         <main>
-            <Snippet snippet={CurrentSnippet} />
+            <Snippet snipdata={CurrentSnippet} currentUser={props.currentUser} handleDeleteSnippet={props.handleDeleteSnippet} />
         </main>
     );
 }
