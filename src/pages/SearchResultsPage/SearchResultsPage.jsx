@@ -29,6 +29,8 @@ const SearchResultsPage = props => {
         )      
     }, [search])   
 
+    const searchResults = search.text ? filteredResults : allSnippets
+
     return (
         <>
         <section className="w-3/4 mt-6 mx-auto">
@@ -37,8 +39,7 @@ const SearchResultsPage = props => {
                <SearchBar search={search} setSearch={setSearch}/>
             </div>
             <ul className="space-y-3">
-            {/* {filteredResults.map((snip, idx) => ( */}
-            {filteredResults.map((snip, idx) => (
+            {searchResults.map((snip, idx) => (
                 <li key={idx} className="bg-white shadow overflow-auto rounded-md px-6 py-4">
                     <SnippetPreview key={idx} data={snip} />
                 </li>
