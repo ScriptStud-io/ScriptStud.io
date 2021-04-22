@@ -39,14 +39,17 @@ class App extends Component {
   }
 
   handleDeleteSnippet = async id => {
-    if(authService.getUser()){
-      await snippetAPI.deleteOne(id);
-      this.setState(state => ({
-        snippets: state.snippets.filter(m => m._id !== id)
-      }), () => this.props.history.push('/snippets'));
-    } else {
-      this.props.history.push('/login')
-    }
+    console.log('handleDeleteSnippet triggered')
+    console.log('id passed: ', id)
+    console.log('this.props: ', this)
+    // if(authService.getUser()){
+    //   await snippetAPI.deleteOne(id);
+    //   this.setState(state => ({
+    //     snippets: state.snippets.filter(m => m._id !== id)
+    //   }), () => this.props.history.push('/search/all'));
+    // } else {
+    //   this.props.history.push('/login')
+    // }
   }
 
   handleUpdateSnippet = async updatedSnippetData => {
@@ -67,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    const {user} = this.state
+    const {user} = this.state;
     return (
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
@@ -80,14 +83,11 @@ class App extends Component {
             </main>
           )}
         />
-        <Switch>
-          <Route 	exact path='/snip' 
-                  render={(props)=><CodeSnippetPage {...props} />} 
-          />
-          <Route 	exact path='/snip/:snipid' 
-                  render={(props)=><CodeSnippetPage {...props} />} 
-          />
-        </Switch>
+
+        <Route 	exact path='/snip/:snipid' 
+                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} handleDeleteSnippet={this.handleDeleteSnippet} />}
+        />
+
         <Switch>
           <Route  exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
@@ -140,13 +140,13 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
-        <Route path='/snippet/edit' render={({location})=>
-          authService.getUser() ?
-          <EditSnippetPage
-            user={this.state.user}
-            location={location}
-            handleUpdateSnippet={this.handleUpdateSnippet}
-          />
+        <Route  exact path='/snip/edit/:id'
+                render={({match, location}) => authService.getUser() ? <EditSnippetPage  user={this.state.user}
+                                                                                  location={location}
+                                                                                  match={match}
+                                                                                  handleUpdateSnippet={this.handleUpdateSnippet}
+                                                                                  
+                                                                />
           :
           <Redirect to='/login' />
         }/>

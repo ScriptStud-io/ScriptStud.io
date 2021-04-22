@@ -1,20 +1,26 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
+
+import * as snippetAPI from '../../services/snippets-api';
+import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter";
 import SnippetToolBar from "../SnippetToolBar/SnippetToolBar"
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 
-function Snippet({snipdata}) {
-    console.log('snipdata:', snipdata)
+function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
+
+    const disableIfNotUser = props.currentUser._id != props.snipdata.addedBy ? true : false;
+
+    const deleteClickHandler = () => snippetAPI.deleteOne(props.snipdata._id);
 
     return (
         <main className="w-3/4 mt-6 mx-auto flex">
             <ul className="">
             <Grid celled>
                 <Grid.Row id='snip-comp-title'>
+
                 <li id="test-top" className="w-1/6 bg-white shadow overflow-hidden rounded-md px-6 py-4 border-t-4  border-current">
                     <Grid.Column id='snip-comp-title' >
                         <h2>Title</h2>
@@ -36,7 +42,7 @@ function Snippet({snipdata}) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snipdata.purpose}
+                        {props.snipdata.purpose}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -78,7 +84,7 @@ function Snippet({snipdata}) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snipdata.notes}
+                        {props.snipdata.notes}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -106,13 +112,11 @@ function Snippet({snipdata}) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {snipdata.tags}
+                        {props.snipdata.tags}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
                 <div className="mt-3"></div>
-
-                {/*TODO: We can use this row for any navigation/functional buttons*/}
                 <Grid.Row>
                     <li className="w-1/6 overflow-hidden rounded-md px-6 py-4">
                         <Grid.Column id='snip-comp-tags' width={3}>
@@ -128,12 +132,10 @@ function Snippet({snipdata}) {
                         </li>
                         <li className="ml-2 w-4/6 overflow-hidden rounded-md px-4 py-2">
                         <Grid.Column>
-                            <SnippetToolBar />
+                            <SnippetToolBar disableIfNotUser={disableIfNotUser}  deleteClickHandler={deleteClickHandler} />
                         </Grid.Column>
                         </li>
-                    
                 </Grid.Row>
-
             </Grid>
             </ul>
         </main>

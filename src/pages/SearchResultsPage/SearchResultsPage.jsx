@@ -14,8 +14,6 @@ const SearchResultsPage = props => {
         })();
     }, [])
 
-    console.log('allSnippets: ', allSnippets)
-
     return (
         <>
         <main className="w-3/4 mt-6 mx-auto">

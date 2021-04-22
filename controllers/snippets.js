@@ -16,8 +16,8 @@ function update(req,res) {
 
 function deleteOne(req,res) {
   Snippet.findByIdAndDelete(req.params.id)
-  .then(snippet => {res.json(snippet)})
-  .catch(err => {res.json(err)})
+    .then(snippet => res.json(snippet))
+    .catch(err => res.json(err));
 }
 
 function index(req,res) {
@@ -28,7 +28,6 @@ function index(req,res) {
 }                                 
 
 function getOneSnip(req, res) {
-  console.log(`snip ID in URL is: ${req.params.id}`);
   Snippet.findById(req.params.id)
     .then(snippet => res.json(snippet))
     .catch(err => res.json(err))

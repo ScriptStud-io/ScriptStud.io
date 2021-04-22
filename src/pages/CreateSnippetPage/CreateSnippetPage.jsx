@@ -17,5 +17,4 @@ const CreateSnippetPage = (props) => {
     );
 }
 
-
 export default CreateSnippetPage;
