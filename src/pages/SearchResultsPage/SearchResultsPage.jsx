@@ -4,7 +4,6 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import * as snippetAPI from '../../services/snippets-api';
 import React, { useState, useEffect } from 'react';
 import { useForm } from '../../hooks/useForm'
-import SearchBar from '../../components/SearchBar/SearchBar'
 
 const SearchResultsPage = props => {
 
