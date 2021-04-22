@@ -70,7 +70,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                    {/* <SyntaxHighlighter name="generic" state={snipdata} /> */}
+                    <SyntaxHighlighter name="generic" state={snipdata} />
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -98,7 +98,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                    {/* <SyntaxHighlighter name="sample" state={snipdata} /> */}
+                    <SyntaxHighlighter name="sample" state={snipdata} />
                     </Grid.Column>
                     </li>
                 </Grid.Row>
