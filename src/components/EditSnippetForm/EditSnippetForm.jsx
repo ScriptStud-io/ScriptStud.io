@@ -22,14 +22,8 @@ export default function EditSnippetForm(props){
     // initialize object for form validation
     const formRef = useRef()
     //  custom hook to initialize state
-    const [state, handleChange] = useForm({
-        title: '',
-        purpose: "",  
-        generic: "Template",
-        notes: "",
-        sample: "Insert Code", 
-        tags: [],
-    })
+    const [state, setState] = useForm(props.currentSnippet);
+
 
     console.log('edit props: ', props)
 
@@ -81,7 +75,7 @@ export default function EditSnippetForm(props){
                             id="title"
                             autoComplete="enter-title"
                             defaultValue={props.currentSnippet.title}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
@@ -100,7 +94,7 @@ export default function EditSnippetForm(props){
                             id="purpose"
                             autoComplete="purpose"
                             defaultValue={props.currentSnippet.purpose}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
@@ -120,13 +114,13 @@ export default function EditSnippetForm(props){
                             type="text"
                             autoComplete="code"
                             value={state.generic}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                             />  */}
                             {/* syntax highlighter demo */}
-                            <CodeEditor name="generic" handleChange={handleChange} state={state} initialData={props.currentSnippet.generic} />
+                            <CodeEditor name="generic" setState={setState} state={state} initialData={props.currentSnippet.generic} />
                             <br></br> 
                             <SyntaxHighlighter name="generic" state={state}  />
                         </div> 
@@ -144,7 +138,7 @@ export default function EditSnippetForm(props){
                             id="notes"
                             autoComplete="notes"
                             defaultValue={props.currentSnippet.notes}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
@@ -160,7 +154,7 @@ export default function EditSnippetForm(props){
                         
                         {/*  react ace editor demo */}
                         
-                        <CodeEditor name="sample" handleChange={handleChange} state={state} initialData={props.currentSnippet.sample} /> 
+                        <CodeEditor name="sample" setState={setState} state={state} initialData={props.currentSnippet.sample} /> 
                         <br></br>
                         <SyntaxHighlighter name="sample" state={state} />
                         
@@ -178,7 +172,7 @@ export default function EditSnippetForm(props){
                             id="tags"
                             autoComplete='tags'
                             defaultValue={props.currentSnippet.tags}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
