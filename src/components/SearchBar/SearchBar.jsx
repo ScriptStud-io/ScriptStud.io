@@ -3,7 +3,7 @@ import './SearchBar.css';
 
 
 const SearchBar = (props) => {
-     
+
     return (
         <div className="flex">
         {/* <form ref={formRef} onSubmit={handleSubmit}> */}

@@ -1,9 +1,11 @@
 import React from "react";
+import {useLocation} from 'react-router-dom';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-monokai";
 
 export default function CodeEditor(props) {
+        const location = useLocation();
 
         return (
         <div id="editor">
@@ -20,7 +22,7 @@ export default function CodeEditor(props) {
                 showPrintMargin={true}
                 showGutter={true}
                 highlightActiveLine={true}
-                value={props.state[props.name]}
+                value={location.pathname === '/snippets/create' ? props.state[props.name] : props.initialData}
                 setOptions={{
                 enableBasicAutocompletion: false,
                 enableLiveAutocompletion: true,

@@ -14,7 +14,7 @@ import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 // TODO: fix create button disable state on form invalidity
 
 
-export default function CreateSnippetForm(props){
+export default function EditSnippetForm(props){
     //  allow us history access for routing 
     const history = useHistory();
     // initialize form as invalid
@@ -30,6 +30,8 @@ export default function CreateSnippetForm(props){
         sample: "Insert Code", 
         tags: [],
     })
+
+    console.log('edit props: ', props)
 
     // const [sampleState, handleSampleChange] = useCodeEditor({
         
@@ -53,13 +55,15 @@ export default function CreateSnippetForm(props){
     //     handleAddSnippet(state)
     // }
 
+    console.log('AAA props: ', props)
+
     return ( 
         <main>
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
                     <div>
                         <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Snippet</h3>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in the fields below to create your snippet</p>
+                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in the fields below to edit your snippet</p>
                     </div>
                     {/* start of input form */}
                     {/* TODO: add an onClick to form field below */}
@@ -75,7 +79,7 @@ export default function CreateSnippetForm(props){
                             name="title"
                             id="title"
                             autoComplete="enter-title"
-                            defaultValue={state.title}
+                            defaultValue={props.currentSnippet.title}
                             onChange={handleChange}
                             required
                             pattern=".{2,}"
@@ -94,7 +98,7 @@ export default function CreateSnippetForm(props){
                             name="purpose"
                             id="purpose"
                             autoComplete="purpose"
-                            value={state.purpose}
+                            defaultValue={props.currentSnippet.purpose}
                             onChange={handleChange}
                             required
                             pattern=".{2,}"
@@ -121,7 +125,7 @@ export default function CreateSnippetForm(props){
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                             />  */}
                             {/* syntax highlighter demo */}
-                            <CodeEditor name="generic" handleChange={handleChange} state={state} />
+                            <CodeEditor name="generic" handleChange={handleChange} state={state} initialData={props.currentSnippet.generic} />
                             <br></br> 
                             <SyntaxHighlighter name="generic" state={state}  />
                         </div> 
@@ -138,7 +142,7 @@ export default function CreateSnippetForm(props){
                             name="notes"
                             id="notes"
                             autoComplete="notes"
-                            value={state.notes}
+                            defaultValue={props.currentSnippet.notes}
                             onChange={handleChange}
                             required
                             pattern=".{2,}"
@@ -155,7 +159,7 @@ export default function CreateSnippetForm(props){
                         
                         {/*  react ace editor demo */}
                         
-                        <CodeEditor name="sample" handleChange={handleChange} state={state} /> 
+                        <CodeEditor name="sample" handleChange={handleChange} state={state} initialData={props.currentSnippet.sample} /> 
                         <br></br>
                         <SyntaxHighlighter name="sample" state={state} />
                         
@@ -172,7 +176,7 @@ export default function CreateSnippetForm(props){
                             name="tags"
                             id="tags"
                             autoComplete='tags'
-                            value={state.tags}
+                            defaultValue={props.currentSnippet.tags}
                             onChange={handleChange}
                             required
                             pattern=".{2,}"
@@ -184,7 +188,7 @@ export default function CreateSnippetForm(props){
                         type="submit"
                         disabled={formInvalid}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >CREATE</button>        
+                        >Edit Snip</button>        
                     </div>
                     </form>
                     {/* end of input form */}

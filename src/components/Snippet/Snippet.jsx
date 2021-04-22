@@ -11,7 +11,7 @@ function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
-    const disableIfNotUser = props.currentUser._id != props.snipdata.addedBy ? true : false;
+    const disableIfNotUser = props.currentUser._id !== props.snipdata.addedBy ? true : false;
 
     const deleteClickHandler = () => snippetAPI.deleteOne(props.snipdata._id);
 
@@ -28,7 +28,7 @@ function Snippet(props) {
                 </li>
                 <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' >
-                        {snipdata.title}
+                        {props.snipdata.title}
                     </Grid.Column>
                 </li>
                 </Grid.Row >
