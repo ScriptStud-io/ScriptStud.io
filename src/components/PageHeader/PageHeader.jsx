@@ -24,6 +24,7 @@ export default function PageHeader(props) {
   
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // checks if a user is logged in every time props.user changes
   useEffect(() => {
     (async function() {
       const userLoggedIn = props.user ? true : false;
@@ -66,7 +67,7 @@ export default function PageHeader(props) {
                   <div className="flex space-x-4">
                     
 
-                    {navigation.filter(item => item.loggedIn.includes(!!props.user)).map((item, idx) => (
+                    {navigation.filter(item => item.loggedIn.includes(loggedIn)).map((item, idx) => (
                       <a key={idx}
                         href={item.href}
                         className={classNames(
@@ -168,6 +169,7 @@ export default function PageHeader(props) {
                             {({ active }) => (
                               <a
                                 href="/signout"
+                                onClick={props.handleLogout}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
