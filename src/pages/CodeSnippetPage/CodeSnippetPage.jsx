@@ -14,9 +14,11 @@ const CodeSnippetPage = props => {
         })();
     }, [props.match.params.snipid]);
 
+    console.log('prosp: ', props)
+
     return (
         <main>
-            <Snippet snipdata={CurrentSnippet} />
+            <Snippet snipdata={CurrentSnippet} currentUser={props.currentUser} handleDeleteSnippet={props.handleDeleteSnippet} />
         </main>
     );
 }

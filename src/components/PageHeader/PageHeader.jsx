@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import React, { useState, useEffect } from 'react';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -9,18 +10,28 @@ import './PageHeader.css';
 // TODO: fix the logo covering up hamburger menu on mobile view "shrink the webpage and youll see what I mean" -Jessica could you take a crack at this? 
 
 const navigation = [
-  { name: 'My Snips', href: '/userhub', current: true },
-  { name: 'Search Snips', href: '/search/all', current: false },
-  { name: 'Login', href: '/login', current: false },
-  { name: 'Sign Up', href: '/signup', current: false },
+  { name: 'My Snips', href: '/userhub', current: true, loggedIn: [true]},
+  { name: 'Search Snips', href: '/search/all', current: false, loggedIn: [true, false] },
+  { name: 'Login', href: '/login', current: false, loggedIn: [false] },
+  { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function PageHeader(props) {
+  
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  // checks if a user is logged in every time props.user changes
+  useEffect(() => {
+    (async function() {
+      const userLoggedIn = props.user ? true : false;
+      setLoggedIn(userLoggedIn);
+    })();
+  }, [props.user]);
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -54,9 +65,10 @@ export default function PageHeader(props) {
                 </div> */}
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
+                    
+
+                    {navigation.filter(item => item.loggedIn.includes(loggedIn)).map((item, idx) => (
+                      <a key={idx}
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -67,6 +79,22 @@ export default function PageHeader(props) {
                         {item.name}
                       </a>
                     ))}
+
+                    {/* {navigation.map((item, idx) => (
+                      <a key={idx}
+                        href={item.href}
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'px-3 py-2 rounded-md text-sm font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    ))} */}
+
+
+
                   </div>
                 </div>
               </div>
@@ -136,10 +164,12 @@ export default function PageHeader(props) {
                               </a>
                             )}
                           </Menu.Item>
+                          {/* TODO: [MARTY] add sign out funcitonality to sign out button */}
                           <Menu.Item>
                             {({ active }) => (
                               <a
                                 href="/signout"
+                                onClick={props.handleLogout}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
