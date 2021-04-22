@@ -1,17 +1,14 @@
 import './SearchResultsPage.css';
-import React, { useState, useEffect } from 'react';
-import * as snippetAPI from '../../services/snippets-api';
 import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
-import SearchBar from '../../components/SearchBar/SearchBar'
+import * as snippetAPI from '../../services/snippets-api';
+import React, { useState, useEffect } from 'react';
 import { useForm } from '../../hooks/useForm'
-
 
 const SearchResultsPage = props => {
 
     const [allSnippets, setAllSnippets] = useState([]);
     const [search, setSearch] = useForm('')
     const [filteredResults, setFilteredResults] = useState([]);
-    
 
     useEffect(() => {
         (async function() {
@@ -51,5 +48,3 @@ const SearchResultsPage = props => {
 }
 
 export default SearchResultsPage;
-
-
