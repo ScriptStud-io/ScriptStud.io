@@ -39,7 +39,7 @@ function SplashPage() {
             <div id='working-with-line'>
             <h1>I am working with </h1>
             <select name='technology' id='tech-select'>
-                {tagList.map(tag => <option value={tag}>{tag}</option>)}
+                {tagList.map((tag, idx) => <option key={idx} value={tag}>{tag}</option>)}
             </select>
             </div>
             <input type='submit' value='Submit' />

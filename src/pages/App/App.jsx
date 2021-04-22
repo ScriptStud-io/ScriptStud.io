@@ -40,6 +40,8 @@ class App extends Component {
 
   handleDeleteSnippet = async id => {
     console.log('handleDeleteSnippet triggered')
+    console.log('id passed: ', id)
+    console.log('this.props: ', this)
     // if(authService.getUser()){
     //   await snippetAPI.deleteOne(id);
     //   this.setState(state => ({
@@ -83,7 +85,7 @@ class App extends Component {
         />
 
         <Route 	exact path='/snip/:snipid' 
-                render={(props)=><CodeSnippetPage {...props} handleDeleteSnippet={this.handleDeleteSnippet} />} 
+                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} />} 
         />
 
         <Switch>
