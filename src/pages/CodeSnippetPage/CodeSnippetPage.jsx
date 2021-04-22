@@ -5,14 +5,23 @@ import * as snippetAPI from '../../services/snippets-api';
 import React, { useState, useEffect } from 'react';
 
 const CodeSnippetPage = props => {
-    const [CurrentSnippet, setSnippet] = useState({});
+    const [CurrentSnippet, setSnippet] = useState({
+        title: "",
+        purpose: "",  
+        generic: "",
+        notes: "",
+        sample: "", 
+        tags: [],
+
+    });
 
     useEffect(() => {
         (async function() {
             const snippet = await snippetAPI.getOne(props.match.params.snipid);
             setSnippet(snippet);
         })();
-    }, [props.match.params.snipid]);
+    }, []);
+    console.log('CurrentSnippet:', CurrentSnippet)
 
     return (
         <main>
