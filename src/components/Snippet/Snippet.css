@@ -1,5 +1,10 @@
 /* these main font family designations are leaking to the splash page styles */
 
+#test-top {
+    border-top: black, !important;
+    border-top-width: 5px, !important;
+}
+
 main {
     color: #ADB5BD;
     font-family: monospace;

@@ -51,7 +51,7 @@ class SignupForm extends Component {
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-6">
                       <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
-                        Name
+                        Username
                       </label>
                       <input
                         type="text"
