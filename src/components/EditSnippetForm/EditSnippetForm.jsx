@@ -1,41 +1,69 @@
 import './EditSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
+import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
+import CodeEditor from '../CodeEditor/CodeEditor'
+import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
+
+// * 3rd Iteration of Create Snippet Form, 4/20/21, Christian Mosley
+// TODO: update generic input with its own editor/syntax highlighter (currently using sampleState for testing purposes)
+// TODO: update tag input(s) with parsing functionality
+// TODO: add form validation warning for invalid form 
+// TODO: fix create button disable state on form invalidity
 
 
-export default function EditSnippetForm(props){
-    const location = useLocation()
+export default function CreateSnippetForm(props){
     //  allow us history access for routing 
     const history = useHistory();
     // initialize form as invalid
     const [formInvalid, setValidForm] = useState(true)
     // initialize object for form validation
     const formRef = useRef()
-    const [state, handleChange] = useForm(location.state.snippet)
+    //  custom hook to initialize state
+    const [state, handleChange] = useForm({
+        title: '',
+        purpose: "",  
+        generic: "Template",
+        notes: "",
+        sample: "Insert Code", 
+        tags: [],
+    })
+
+    // const [sampleState, handleSampleChange] = useCodeEditor({
+        
+        
+    // })
+
+    // function to handle snippet create via api
+    // async function handleAddSnippet(newSnippetData){
+    //     await snippetAPI.create(newSnippetData)
+    //     history.push('/snippets')
+    // }
 
     // hook to check form validity 
     useEffect(() => {
         formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
         }, [state]);
-
+    // TODO: re-write this as PUT, not POST
     // pass form data via submit to handleAddSnippet func 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        await snippetAPI.update(state)
-        history.push('/snippets')
-    }
+    // async function handleSubmit(e) {
+    //     e.preventDefault()
+    //     handleAddSnippet(state)
+    // }
 
     return ( 
+        <main>
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
                     <div>
                         <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Snippet</h3>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Adjust the fields below to edit your snippet</p>
+                        <p className="mt-1 max-w-2xl text-sm text-gray-500">Fill in the fields below to create your snippet</p>
                     </div>
                     {/* start of input form */}
-                    <form ref={formRef} onSubmit={handleSubmit}>
+                    {/* TODO: add an onClick to form field below */}
+                    <form ref={formRef} >
                     <div className="space-y-6 sm:space-y-5">
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -47,7 +75,7 @@ export default function EditSnippetForm(props){
                             name="title"
                             id="title"
                             autoComplete="enter-title"
-                            value={state.title}
+                            defaultValue={state.title}
                             onChange={handleChange}
                             required
                             pattern=".{2,}"
@@ -76,11 +104,12 @@ export default function EditSnippetForm(props){
                         </div>
 
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                             Generic Form
                         </label>
-                        <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
+                         <div className="mt-1 sm:mt-0 sm:col-span-2">
+                            {/* <input
                             id="generic"
                             name="generic"
                             type="text"
@@ -90,8 +119,13 @@ export default function EditSnippetForm(props){
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
+                            />  */}
+                            {/* syntax highlighter demo */}
+                            <CodeEditor name="generic" handleChange={handleChange} state={state} />
+                            <br></br> 
+                            <SyntaxHighlighter name="generic" state={state}  />
+                        </div> 
+                        
                         </div>
                         
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -118,23 +152,19 @@ export default function EditSnippetForm(props){
                             Sample
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
-                            type="text"
-                            name="sample"
-                            id="sample"
-                            autoComplete='sample'
-                            value={state.sample}
-                            onChange={handleChange}
-                            required
-                            pattern=".{2,}"
-                            className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                            />
+                        
+                        {/*  react ace editor demo */}
+                        
+                        <CodeEditor name="sample" handleChange={handleChange} state={state} /> 
+                        <br></br>
+                        <SyntaxHighlighter name="sample" state={state} />
+                        
                         </div>
                         </div>
-
+                        
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label htmlFor="state" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                            Tags
+                            Tags: (seperate with commas)
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input
@@ -154,15 +184,13 @@ export default function EditSnippetForm(props){
                         type="submit"
                         disabled={formInvalid}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >EDIT</button> 
-                        <Link to="/snippets">
-                        <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-6">Cancel</button>
-                        </Link>       
+                        >CREATE</button>        
                     </div>
                     </form>
                     {/* end of input form */}
                 </div>
             </div>
+        </main>
         );
     }
  

@@ -14,8 +14,6 @@ const SearchResultsPage = props => {
         })();
     }, [])
 
-    console.log('allSnippets: ', allSnippets)
-
     return (
         <>
             {allSnippets.map((snip, idx) => <SnippetPreview key={idx} data={snip} />)}

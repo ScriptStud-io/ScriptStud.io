@@ -1,17 +1,18 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
+import * as snippetAPI from '../../services/snippets-api';
+import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter";
 
 function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
     const disableIfNotUser = props.currentUser._id != props.snipdata.addedBy ? true : false;
+    console.log('propssss: ', props)
 
     return (
         <main>
-            <p>{JSON.stringify(props)}</p>
             <Grid celled>
                 <Grid.Row id='snip-comp-title'>
                     <h1>{props.snipdata.title}</h1>
@@ -79,8 +80,8 @@ function Snippet(props) {
                     </Grid.Column>
                     <Grid.Column id='snip-comp-options-cell' className='snip-comp-info-field' width={10}>
                         <button className='snippet-options-button' onClick={goBack}>Go Back</button>
-                        <button className='snippet-options-button'>Edit Snippet</button>
-                        <button className='snippet-options-button' disabled={disableIfNotUser} >Delete Snippet</button>
+                        <button className='snippet-options-button'  hidden={disableIfNotUser} >Edit Snippet</button>
+                        <button className='snippet-options-button' onClick={() => snippetAPI.deleteOne(props.snipdata._id)} hidden={disableIfNotUser} >Delete Snippet</button>
                     </Grid.Column>
                 </Grid.Row>
 

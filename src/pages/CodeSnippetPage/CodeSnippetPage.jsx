@@ -18,7 +18,7 @@ const CodeSnippetPage = props => {
 
     return (
         <main>
-            <Snippet snipdata={CurrentSnippet} currentUser={props.currentUser} />
+            <Snippet snipdata={CurrentSnippet} currentUser={props.currentUser} handleDeleteSnippet={props.handleDeleteSnippet} />
         </main>
     );
 }

@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    const {user} = this.state
+    const {user} = this.state;
     return (
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
@@ -85,7 +85,7 @@ class App extends Component {
         />
 
         <Route 	exact path='/snip/:snipid' 
-                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} />} 
+                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} handleDeleteSnippet={this.handleDeleteSnippet} />}
         />
 
         <Switch>
@@ -140,13 +140,13 @@ class App extends Component {
             :
             <Redirect to='/login' />
         } />
-        <Route path='/snippet/edit' render={({location})=>
-          authService.getUser() ?
-          <EditSnippetPage
-            user={this.state.user}
-            location={location}
-            handleUpdateSnippet={this.handleUpdateSnippet}
-          />
+        <Route  exact path='/snip/edit/:id'
+                render={({match, location}) => authService.getUser() ? <EditSnippetPage  user={this.state.user}
+                                                                                  location={location}
+                                                                                  match={match}
+                                                                                  handleUpdateSnippet={this.handleUpdateSnippet}
+                                                                                  
+                                                                />
           :
           <Redirect to='/login' />
         }/>
