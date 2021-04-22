@@ -8,7 +8,6 @@ import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs'
 
 // * 3rd Iteration of Create Snippet Form, 4/20/21, Christian Mosley
-// TODO: update generic input with its own editor/syntax highlighter (currently using sampleState for testing purposes)
 // TODO: update tag input(s) with parsing functionality
 // TODO: add form validation warning for invalid form 
 // TODO: fix create button disable state on form invalidity
@@ -30,11 +29,6 @@ export default function CreateSnippetForm(props){
         sample: "Insert Code", 
         tags: [],
     })
-
-    // const [sampleState, handleSampleChange] = useCodeEditor({
-        
-        
-    // })
 
     // function to handle snippet create via api
     async function handleAddSnippet(newSnippetData){
@@ -89,8 +83,10 @@ export default function CreateSnippetForm(props){
                             Purpose
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
-                            <input
-                            type="text"
+                            <textarea
+                            rows="4" 
+                            cols="50"
+                            type="text" 
                             name="purpose"
                             id="purpose"
                             autoComplete="purpose"
