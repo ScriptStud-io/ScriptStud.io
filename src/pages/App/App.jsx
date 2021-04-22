@@ -39,14 +39,15 @@ class App extends Component {
   }
 
   handleDeleteSnippet = async id => {
-    if(authService.getUser()){
-      await snippetAPI.deleteOne(id);
-      this.setState(state => ({
-        snippets: state.snippets.filter(m => m._id !== id)
-      }), () => this.props.history.push('/snippets'));
-    } else {
-      this.props.history.push('/login')
-    }
+    console.log('handleDeleteSnippet triggered')
+    // if(authService.getUser()){
+    //   await snippetAPI.deleteOne(id);
+    //   this.setState(state => ({
+    //     snippets: state.snippets.filter(m => m._id !== id)
+    //   }), () => this.props.history.push('/search/all'));
+    // } else {
+    //   this.props.history.push('/login')
+    // }
   }
 
   handleUpdateSnippet = async updatedSnippetData => {
@@ -80,14 +81,11 @@ class App extends Component {
             </main>
           )}
         />
-        <Switch>
-          <Route 	exact path='/snip' 
-                  render={(props)=><CodeSnippetPage {...props} />} 
-          />
-          <Route 	exact path='/snip/:snipid' 
-                  render={(props)=><CodeSnippetPage {...props} />} 
-          />
-        </Switch>
+
+        <Route 	exact path='/snip/:snipid' 
+                render={(props)=><CodeSnippetPage {...props} handleDeleteSnippet={this.handleDeleteSnippet} />} 
+        />
+
         <Switch>
           <Route  exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}

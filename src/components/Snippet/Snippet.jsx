@@ -3,9 +3,13 @@ import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter"
 
-function Snippet({snipdata}) {
+function Snippet({snipdata, handleDeleteSnippet}) {
     let history = useHistory();
     const goBack = () => history.goBack();
+
+    const handleDeleteClick = () => {
+
+    }
 
     return (
         <main>
@@ -77,7 +81,7 @@ function Snippet({snipdata}) {
                     <Grid.Column id='snip-comp-options-cell' className='snip-comp-info-field' width={10}>
                         <button className='snippet-options-button' onClick={goBack}>Go Back</button>
                         <button className='snippet-options-button'>Edit Snippet</button>
-                        <button className='snippet-options-button'>Delete Snippet</button>
+                        <button className='snippet-options-button' onClick={handleDeleteSnippet}>Delete Snippet</button>
                     </Grid.Column>
                 </Grid.Row>
 
