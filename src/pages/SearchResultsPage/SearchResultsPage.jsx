@@ -1,5 +1,6 @@
 import './SearchResultsPage.css';
 import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import * as snippetAPI from '../../services/snippets-api';
 import React, { useState, useEffect } from 'react';
 import { useForm } from '../../hooks/useForm'
@@ -22,7 +23,7 @@ const SearchResultsPage = props => {
     useEffect(() => {
         setFilteredResults(
             allSnippets.filter(snippet => (
-              snippet.title.toLowerCase().includes(search.text.toLowerCase())
+            snippet.title.toLowerCase().includes(search.text.toLowerCase())
             ))   
         )      
     }, [search])   
@@ -33,8 +34,8 @@ const SearchResultsPage = props => {
         <>
         <section className="w-3/4 mt-6 mx-auto">
             <div id="search" className="w-2/5 flex items-center mb-4">
-               <p>Search: &nbsp;</p> 
-               <SearchBar search={search} setSearch={setSearch}/>
+                <p>Search: &nbsp;</p> 
+                <SearchBar search={search} setSearch={setSearch}/>
             </div>
             <ul className="space-y-3">
             {searchResults.map((snip, idx) => (
