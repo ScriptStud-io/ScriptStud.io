@@ -145,7 +145,6 @@ class App extends Component {
                                                                                   location={location}
                                                                                   match={match}
                                                                                   handleUpdateSnippet={this.handleUpdateSnippet}
-                                                                                  
                                                                 />
           :
           <Redirect to='/login' />

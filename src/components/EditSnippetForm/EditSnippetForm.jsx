@@ -50,10 +50,11 @@ export default function EditSnippetForm(props){
         }, [state]);
     // TODO: re-write this as PUT, not POST
     // pass form data via submit to handleAddSnippet func 
-    // async function handleSubmit(e) {
-    //     e.preventDefault()
-    //     handleAddSnippet(state)
-    // }
+    async function handleSubmit(e) {
+        e.preventDefault();
+        console.log('statestate: ', state)
+        props.handleUpdateSnippet(state);
+    }
 
     console.log('AAA props: ', props)
 
@@ -67,7 +68,7 @@ export default function EditSnippetForm(props){
                     </div>
                     {/* start of input form */}
                     {/* TODO: add an onClick to form field below */}
-                    <form ref={formRef} >
+                    <form ref={formRef} onSubmit={handleSubmit}>
                     <div className="space-y-6 sm:space-y-5">
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
