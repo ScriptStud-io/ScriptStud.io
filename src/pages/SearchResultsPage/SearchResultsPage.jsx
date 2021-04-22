@@ -1,4 +1,8 @@
 import './SearchResultsPage.css';
+import SnippetPreview from '../../components/SnippetPreview/SnippetPreview';
+import * as snippetAPI from '../../services/snippets-api';
+import React from 'react';
+import {useEffect, useState} from 'react';
 
 const SearchResultsPage = props => {
 
