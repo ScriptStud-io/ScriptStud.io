@@ -17,9 +17,9 @@ const EditSnippetPage = props => {
 
 return ( 
     <>
-        <div className='CreateSnippetPage'>
+        <div className='EditSnippetPage'>
             <EditSnippetForm
-            handleAddSnippet={props.handleAddSnippet}
+            handleUpdateSnippet={props.handleUpdateSnippet}
             user={props.user}
             currentSnippet={CurrentSnippet} />
         </div>

@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
 // TODO: the links inside the avatar dropdown are placeholders for now to clear warnings in terminal 
-// TODO: fix the logo covering up hamburger menu on mobile view "shrink the webpage and youll see what I mean" -Jessica could you take a crack at this? 
+ 
 
 const navigation = [
-  { name: 'My Snips', href: '/userhub', current: true, loggedIn: [true]},
+  { name: 'Home', href: '/', current: false, loggedIn: [true]},
+  { name: '+ Create', href: '/snippets/create', current: false, loggedIn: [true]},
   { name: 'Search Snips', href: '/search/all', current: false, loggedIn: [true, false] },
+  { name: 'About', href: '/about', current: false, loggedIn: [false]},
   { name: 'Login', href: '/login', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
@@ -72,28 +74,13 @@ export default function PageHeader(props) {
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
+                          'px-3 py-2 rounded-md text-md font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
                       </a>
                     ))}
-
-                    {/* {navigation.map((item, idx) => (
-                      <a key={idx}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))} */}
-
-
 
                   </div>
                 </div>
@@ -136,7 +123,7 @@ export default function PageHeader(props) {
                       >
                         <Menu.Items
                           static
-                          className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                          className="z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         >
                           <Menu.Item>
                             {({ active }) => (

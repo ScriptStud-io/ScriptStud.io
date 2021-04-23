@@ -9,10 +9,15 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    message: "",
   };
 
+  updateMessage = (msg) => {
+    this.setState({message: msg});
+  }
+
   handleChange = (e) => {
-    this.props.updateMessage("");
+    this.updateMessage("");
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -24,9 +29,9 @@ class SignupForm extends Component {
     try {
       await authService.signup(this.state);
       handleSignupOrLogin()
-      history.push("/");
+      history.push("/search/all");
     } catch (err) {
-      updateMessage(err.message);
+      this.updateMessage(err.message);
     }
   };
 
@@ -40,11 +45,11 @@ class SignupForm extends Component {
     return (
     <main className="LoginPage">
       <div className="mt-10 sm:mt-0">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="w-full">
           {/* <div className="md:col-span-1">
             
           </div> */}
-          <div className="mt-5 md:mt-10 md:col-span-2">
+          <div className="mb-10 md:mt-10 md:col-span-2">
             <form autoComplete="off" onSubmit={this.handleSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">

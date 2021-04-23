@@ -1,6 +1,6 @@
 import './EditSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
@@ -15,6 +15,7 @@ import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 
 
 export default function EditSnippetForm(props){
+    const location = useLocation();
     //  allow us history access for routing 
     const history = useHistory();
     // initialize form as invalid
@@ -22,27 +23,8 @@ export default function EditSnippetForm(props){
     // initialize object for form validation
     const formRef = useRef()
     //  custom hook to initialize state
-    const [state, handleChange] = useForm({
-        title: '',
-        purpose: "",  
-        generic: "Template",
-        notes: "",
-        sample: "Insert Code", 
-        tags: [],
-    })
+    const [state, setState] = useForm(location.state.snippet);
 
-    console.log('edit props: ', props)
-
-    // const [sampleState, handleSampleChange] = useCodeEditor({
-        
-        
-    // })
-
-    // function to handle snippet create via api
-    // async function handleAddSnippet(newSnippetData){
-    //     await snippetAPI.create(newSnippetData)
-    //     history.push('/snippets')
-    // }
 
     // hook to check form validity 
     useEffect(() => {
@@ -50,10 +32,11 @@ export default function EditSnippetForm(props){
         }, [state]);
     // TODO: re-write this as PUT, not POST
     // pass form data via submit to handleAddSnippet func 
-    // async function handleSubmit(e) {
-    //     e.preventDefault()
-    //     handleAddSnippet(state)
-    // }
+    async function handleSubmit(e) {
+        e.preventDefault();
+        await snippetAPI.update(state)
+        history.push('/search/all')
+    }
 
     console.log('AAA props: ', props)
 
@@ -67,7 +50,7 @@ export default function EditSnippetForm(props){
                     </div>
                     {/* start of input form */}
                     {/* TODO: add an onClick to form field below */}
-                    <form ref={formRef} >
+                    <form ref={formRef} onSubmit={handleSubmit}>
                     <div className="space-y-6 sm:space-y-5">
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -80,7 +63,7 @@ export default function EditSnippetForm(props){
                             id="title"
                             autoComplete="enter-title"
                             defaultValue={props.currentSnippet.title}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
@@ -99,7 +82,7 @@ export default function EditSnippetForm(props){
                             id="purpose"
                             autoComplete="purpose"
                             defaultValue={props.currentSnippet.purpose}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
@@ -119,15 +102,15 @@ export default function EditSnippetForm(props){
                             type="text"
                             autoComplete="code"
                             value={state.generic}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                             />  */}
                             {/* syntax highlighter demo */}
-                            <CodeEditor name="generic" handleChange={handleChange} state={state} initialData={props.currentSnippet.generic} />
+                            <CodeEditor name="generic" setState={setState} state={state} initialData={props.currentSnippet.generic} />
                             <br></br> 
-                            <SyntaxHighlighter name="generic" state={state}  />
+                            {/* <SyntaxHighlighter name="generic" state={state}  /> */}
                         </div> 
                         
                         </div>
@@ -143,7 +126,7 @@ export default function EditSnippetForm(props){
                             id="notes"
                             autoComplete="notes"
                             defaultValue={props.currentSnippet.notes}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
@@ -159,9 +142,9 @@ export default function EditSnippetForm(props){
                         
                         {/*  react ace editor demo */}
                         
-                        <CodeEditor name="sample" handleChange={handleChange} state={state} initialData={props.currentSnippet.sample} /> 
+                        <CodeEditor name="sample" setState={setState} state={state} initialData={props.currentSnippet.sample} /> 
                         <br></br>
-                        <SyntaxHighlighter name="sample" state={state} />
+                        {/* <SyntaxHighlighter name="sample" state={state} /> */}
                         
                         </div>
                         </div>
@@ -177,7 +160,7 @@ export default function EditSnippetForm(props){
                             id="tags"
                             autoComplete='tags'
                             defaultValue={props.currentSnippet.tags}
-                            onChange={handleChange}
+                            onChange={setState}
                             required
                             pattern=".{2,}"
                             className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"

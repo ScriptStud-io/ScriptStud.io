@@ -8,7 +8,9 @@ import { useForm } from '../../hooks/useForm'
 const SearchResultsPage = props => {
 
     const [allSnippets, setAllSnippets] = useState([]);
-    const [search, setSearch] = useForm('')
+    const [search, setSearch] = useForm({
+        search: "" 
+    })
     const [filteredResults, setFilteredResults] = useState([]);
 
     useEffect(() => {
@@ -37,13 +39,14 @@ const SearchResultsPage = props => {
                 <SearchBar search={search} setSearch={setSearch}/>
             </div>
             <ul className="space-y-3">
-            {searchResults.map((snip, idx) => (
+            {searchResults.map((snippet, idx) => (
                 <li key={idx} className="bg-white shadow overflow-auto rounded-md px-6 py-4">
-                    <SnippetPreview key={idx} data={snip} />
+                    <SnippetPreview key={idx} user={props.user} snippet={snippet} />
                 </li>
             ))}
             </ul>
         </section>
+        <div className="mb-4"></div>
         </>
     )
 }

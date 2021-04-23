@@ -1,22 +1,18 @@
 import './Snippet.css';
 import {Grid} from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-
 import * as snippetAPI from '../../services/snippets-api';
 import SyntaxHighlighter from "../../components/SyntaxHighlighter/SyntaxHighlighter";
 import SnippetToolBar from "../SnippetToolBar/SnippetToolBar"
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 
 function Snippet(props) {
-    console.log('propsonthispage', props)
+    console.log('Snippet-Props', props)
     let history = useHistory();
     const goBack = () => history.goBack();
 
-    const disableIfNotUser = props.currentUser._id !== props.snipdata.addedBy ? true : false;
-
-    const deleteClickHandler = () => snippetAPI.deleteOne(props.snipdata._id);
-    const editClickHandler = () => history.push(`/snip/edit/${props.snipdata._id}`);
-
+    const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id)
+   
     return (
         <main className="w-3/4 mt-6 mx-auto flex">
             <ul className="">
@@ -30,7 +26,7 @@ function Snippet(props) {
                 </li>
                 <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' >
-                        {props.snipdata.title}
+                        {props.snippet.title}
                     </Grid.Column>
                 </li>
                 </Grid.Row >
@@ -44,7 +40,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {props.snipdata.purpose}
+                        {props.snippet.purpose}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -72,7 +68,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                    <SyntaxHighlighter name="generic" state={props.snipdata} />
+                    <SyntaxHighlighter name="generic" state={props.snippet} />
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -86,7 +82,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {props.snipdata.notes}
+                        {props.snippet.notes}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -100,7 +96,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                    <SyntaxHighlighter name="sample" state={props.snipdata} />
+                    <SyntaxHighlighter name="sample" state={props.snippet} />
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -114,7 +110,7 @@ function Snippet(props) {
                     </li>
                     <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
                     <Grid.Column className='snip-comp-info-field' width={10}>
-                        {props.snipdata.tags}
+                        {props.snippet.tags}
                     </Grid.Column>
                     </li>
                 </Grid.Row>
@@ -134,7 +130,7 @@ function Snippet(props) {
                         </li>
                         <li className="ml-2 w-4/6 overflow-hidden rounded-md px-4 py-2">
                         <Grid.Column>
-                            <SnippetToolBar disableIfNotUser={disableIfNotUser} deleteClickHandler={deleteClickHandler} editClickHandler={editClickHandler} />
+                            <SnippetToolBar user={props.currentUser} snippet={props.snippet}  deleteClickHandler={deleteClickHandler}  />
                         </Grid.Column>
                         </li>
                 </Grid.Row>

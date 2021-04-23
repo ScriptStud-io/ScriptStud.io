@@ -9,9 +9,11 @@ module.exports = {
 }
 
 function update(req,res) {
+  console.log(`req.params.id: `, req.params.id)
+  console.log(`req.body: `, req.body)
   Snippet.findByIdAndUpdate(req.params.id, req.body)
-  .then(snippet => {res.json(snippet)})
-  .catch(err => {res.json(err)})
+    .then(snippet => {res.json(snippet)})
+    .catch(err => res.json(err))
 }
 
 function deleteOne(req,res) {

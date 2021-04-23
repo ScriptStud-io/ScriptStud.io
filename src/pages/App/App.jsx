@@ -35,7 +35,7 @@ class App extends Component {
     newSnippet.addedBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       snippets: [...state.snippets, newSnippet]
-    }), () => this.props.history.push('/snippets'));
+    }), () => this.props.history.push('/search/all'));
   }
 
   handleDeleteSnippet = async id => {
@@ -60,7 +60,7 @@ class App extends Component {
     );
     this.setState(
       {snippets: newSnippetsArray},
-      () => this.props.history.push('/snippets')
+      () => this.props.history.push('/search/all')
     );
   }
   
@@ -74,28 +74,33 @@ class App extends Component {
     return (
       <>
         <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
-        {/* <NavBar user={this.state.user} handleLogout={this.handleLogout} /> */}
-        <Route  exact path="/"
-                render={() => (
-            <main>
-              <h1>Welcome. This is an authorization template for Script Stud.io</h1>
-              <SplashPage />
-            </main>
+
+        <Route 
+          exact path="/"
+          render={({history}) => (
+              <SplashPage 
+              history={history}
+              handleSignupOrLogin={this.handleSignupOrLogin}
+              />
           )}
         />
 
-        <Route 	exact path='/snip/:snipid' 
-                render={(props)=><CodeSnippetPage {...props} currentUser={this.state.user} handleDeleteSnippet={this.handleDeleteSnippet} />}
+        <Route 
+          exact path='/snip/:snipid' 
+          render={(props)=>
+            <CodeSnippetPage {...props} 
+            currentUser={this.state.user} 
+            handleDeleteSnippet={this.handleDeleteSnippet} />}
         />
 
         <Switch>
-          <Route  exact path='/search/all'
+          <Route exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
           />
           {/*TODO: delete this later it's just a placeholder
           TODO: ...or redirect to splash page with search
           TODO: ...or maybe an advanced search options page?*/}
-          <Route  exact path='/search'
+          <Route  exact path='/search/all'
                   render={()=><SearchResultsPage  />}
           />
           {/*TODO: main search sends selected tech as prop*/}
@@ -141,14 +146,16 @@ class App extends Component {
             <Redirect to='/login' />
         } />
         <Route  exact path='/snip/edit/:id'
-                render={({match, location}) => authService.getUser() ? <EditSnippetPage  user={this.state.user}
-                                                                                  location={location}
-                                                                                  match={match}
-                                                                                  handleUpdateSnippet={this.handleUpdateSnippet}
-                                                                                  
-                                                                />
-          :
-          <Redirect to='/login' />
+                render={({match, location}) => 
+                authService.getUser() ? 
+                <EditSnippetPage  
+                  user={this.state.user}
+                  location={location}
+                  match={match}
+                  handleUpdateSnippet={this.handleUpdateSnippet}
+                />
+                :
+                <Redirect to='/login' />
         }/>
 
         <PageFooter />
