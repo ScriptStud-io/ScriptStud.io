@@ -11,11 +11,8 @@ function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
-    const disableIfNotUser = props.currentUser._id !== props.snippet.addedBy ? true : false;
-
     const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id);
-    const editClickHandler = () => history.push(`/snip/edit/${props.snippet._id}`);
-
+   
     return (
         <main className="w-3/4 mt-6 mx-auto flex">
             <ul className="">
@@ -133,7 +130,7 @@ function Snippet(props) {
                         </li>
                         <li className="ml-2 w-4/6 overflow-hidden rounded-md px-4 py-2">
                         <Grid.Column>
-                            <SnippetToolBar snippet={props.snippet} disableIfNotUser={disableIfNotUser} deleteClickHandler={deleteClickHandler}  />
+                            <SnippetToolBar user={props.currentUser} snippet={props.snippet}  deleteClickHandler={deleteClickHandler}  />
                         </Grid.Column>
                         </li>
                 </Grid.Row>
