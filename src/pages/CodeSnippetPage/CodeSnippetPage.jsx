@@ -20,8 +20,6 @@ const CodeSnippetPage = props => {
             setSnippet(snippet);
         })();
     }, []);
-    console.log('CurrentSnippet:', CurrentSnippet)
-
 
     return (
         <main>
