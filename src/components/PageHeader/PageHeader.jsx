@@ -13,7 +13,6 @@ const navigation = [
   { name: 'Home', href: '/', current: false, loggedIn: [true]},
   { name: '+ Create', href: '/snippets/create', current: false, loggedIn: [true]},
   { name: 'Search Snips', href: '/search/all', current: false, loggedIn: [true, false] },
-  { name: 'About', href: '/about', current: false, loggedIn: [false]},
   { name: 'Login', href: '/login', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]
