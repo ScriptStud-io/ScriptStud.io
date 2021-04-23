@@ -5,6 +5,6 @@ import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 export default function SyntaxHighlighter(props) {
     console.log('props:', props)
     return(
-    <Prism id='test' language='javascript' style={dark}>{props.state[props.name]}</Prism>
+    <Prism id='test' wrapLongLines={true} language='javascript' style={dark}>{props.state[props.name]}</Prism>
     )
 }
