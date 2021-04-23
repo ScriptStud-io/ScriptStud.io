@@ -11,7 +11,7 @@ function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
-    const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id);
+    const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id)
    
     return (
         <main className="w-3/4 mt-6 mx-auto flex">
