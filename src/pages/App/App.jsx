@@ -35,7 +35,7 @@ class App extends Component {
     newSnippet.addedBy = { name: this.state.user.name, _id: this.state.user._id }
     this.setState(state => ({
       snippets: [...state.snippets, newSnippet]
-    }), () => this.props.history.push('/snippets'));
+    }), () => this.props.history.push('/search/all'));
   }
 
   handleDeleteSnippet = async id => {
@@ -60,7 +60,7 @@ class App extends Component {
     );
     this.setState(
       {snippets: newSnippetsArray},
-      () => this.props.history.push('/snippets')
+      () => this.props.history.push('/search/all')
     );
   }
   
@@ -100,7 +100,7 @@ class App extends Component {
           {/*TODO: delete this later it's just a placeholder
           TODO: ...or redirect to splash page with search
           TODO: ...or maybe an advanced search options page?*/}
-          <Route  exact path='/search'
+          <Route  exact path='/search/all'
                   render={()=><SearchResultsPage  />}
           />
           {/*TODO: main search sends selected tech as prop*/}

@@ -1,6 +1,6 @@
 import './CreateSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import * as snippetAPI from '../../services/snippets-api'
 import CodeEditor from '../CodeEditor/CodeEditor'
@@ -32,7 +32,7 @@ export default function CreateSnippetForm(props){
     // function to handle snippet create via api
     async function handleAddSnippet(newSnippetData){
         await snippetAPI.create(newSnippetData)
-        history.push('/snippets')
+        history.push('/search/all')
     }
 
     // hook to check form validity 
@@ -163,12 +163,16 @@ export default function CreateSnippetForm(props){
                         />
                     </div>
                     </div>
-                    <div className="flex justify-center mb-6"> 
+                    <div className="flex justify-center mb-6">
+                        {/* <Link                 
+                            to='/search/all'
+                        >  */}
                         <button 
                         type="submit"
                         disabled={formInvalid}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >CREATE SNIPPET</button>
+                        {/* </Link> */}
                     </div>        
                 </div>
                 </form>
