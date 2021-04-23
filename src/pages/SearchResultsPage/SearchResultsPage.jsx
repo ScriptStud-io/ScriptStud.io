@@ -9,7 +9,7 @@ const SearchResultsPage = props => {
 
     const [allSnippets, setAllSnippets] = useState([]);
     const [search, setSearch] = useForm({
-        search: "" 
+        search: "", 
     })
     const [filteredResults, setFilteredResults] = useState([]);
 
@@ -17,7 +17,6 @@ const SearchResultsPage = props => {
         (async function() {
             const snippets = await snippetAPI.getAll();
             setAllSnippets(snippets);
-            console.log('snippets:', snippets)
         })();
     }, [])
 
