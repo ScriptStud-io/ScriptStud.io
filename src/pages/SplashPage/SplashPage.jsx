@@ -1,7 +1,5 @@
 import React from 'react';
-
 import './SplashPage.css';
-
 import codeLogo from '../SplashPage/code-background.jpg'
 import cmLogo from '../SplashPage/christian.png'
 import msLogo from '../SplashPage/marty.png'
