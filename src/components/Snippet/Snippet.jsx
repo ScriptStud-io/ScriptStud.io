@@ -7,7 +7,6 @@ import SnippetToolBar from "../SnippetToolBar/SnippetToolBar"
 import { ArrowLeftIcon } from '@heroicons/react/solid'
 
 function Snippet(props) {
-    console.log('Snippet-Props', props)
     let history = useHistory();
     const goBack = () => history.goBack();
 

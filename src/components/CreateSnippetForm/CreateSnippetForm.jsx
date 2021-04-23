@@ -1,14 +1,12 @@
 import './CreateSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import * as snippetAPI from '../../services/snippets-api'
 import CodeEditor from '../CodeEditor/CodeEditor'
 import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
 
-// * 3rd Iteration of Create Snippet Form, 4/20/21, Christian Mosley
 // TODO: update tag input(s) with parsing functionality
-// TODO: add form validation warning for invalid form 
 // TODO: fix create button disable state on form invalidity
 
 
@@ -164,15 +162,11 @@ export default function CreateSnippetForm(props){
                     </div>
                     </div>
                     <div className="flex justify-center mb-6">
-                        {/* <Link                 
-                            to='/search/all'
-                        >  */}
                         <button 
                         type="submit"
                         disabled={formInvalid}
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >CREATE SNIPPET</button>
-                        {/* </Link> */}
                     </div>        
                 </div>
                 </form>
