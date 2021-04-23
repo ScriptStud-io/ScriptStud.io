@@ -77,8 +77,11 @@ class App extends Component {
 
         <Route 
           exact path="/"
-          render={() => (
-              <SplashPage />
+          render={({history}) => (
+              <SplashPage 
+              history={history}
+              handleSignupOrLogin={this.handleSignupOrLogin}
+              />
           )}
         />
 

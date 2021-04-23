@@ -9,10 +9,15 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    message: "",
   };
 
+  updateMessage = (msg) => {
+    this.setState({message: msg});
+  }
+
   handleChange = (e) => {
-    this.props.updateMessage("");
+    this.updateMessage("");
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -24,9 +29,9 @@ class SignupForm extends Component {
     try {
       await authService.signup(this.state);
       handleSignupOrLogin()
-      history.push("/");
+      history.push("/search/all");
     } catch (err) {
-      updateMessage(err.message);
+      this.updateMessage(err.message);
     }
   };
 

@@ -8,7 +8,8 @@ import msLogo from '../SplashPage/marty.png'
 import SignupForm from '../../components/SignupForm/SignupForm';
 
 
-function SplashPage() {
+function SplashPage(props) {
+
 
     return (
         <main>
@@ -22,7 +23,7 @@ function SplashPage() {
                   <img
                     className="h-full w-full object-cover"
                     src={codeLogo}
-                    alt="People working on laptops"
+                    alt="Code Snippet"
                   />
                   <div className="absolute inset-0 bg-indigo-700" style={{ mixBlendMode: 'multiply' }} />
                 </div>
@@ -94,7 +95,8 @@ function SplashPage() {
                     </span>
                   </h1>
 
-                  <SignupForm />
+                  <SignupForm {...props} />
+
                   <div className="mt-6 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                     
                   </div>
