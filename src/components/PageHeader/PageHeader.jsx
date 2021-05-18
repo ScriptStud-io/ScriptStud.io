@@ -34,9 +34,10 @@ export default function PageHeader(props) {
   }, [props.user]);
 
   return (
+    <>
+    { props.user ? 
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
-        <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between h-16">
               <Link to='/'>
@@ -67,7 +68,6 @@ export default function PageHeader(props) {
                 </div>
               </div>
               {/* end of nav link items */}
-              { props.user }              
               {/* div containing signout icon */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <a href="/" onClick={props.handleLogout}>
@@ -80,9 +80,47 @@ export default function PageHeader(props) {
                 </a>
               </div>
             </div>
-          </div>          
-        </>
+          </div>            
       )}
     </Disclosure>
-  )
+    : 
+    <Disclosure as="nav" className="bg-gray-800">
+      {({ open }) => (
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div className="relative flex items-center justify-between h-16">
+              <Link to='/'>
+              <div id="nav-logo" className="absolute inset-y-0 left-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-0 sm:pr-0">
+                  <p id="logo-ends">&#60;&nbsp;</p>
+                  <p id="logo">ScriptStud.io</p>
+                  <p id="logo-ends"> &nbsp;/&#62;</p>
+              </div>
+              </Link>
+              {/* start of nav link items */}
+              <div id="nav-items" className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
+                <div className="hidden sm:block sm:ml-6">
+                  <div className="flex space-x-4">
+                    {navigation.filter(item => item.loggedIn.includes(loggedIn)).map((item, idx) => (
+                      <a key={idx}
+                        href={item.href}
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'px-3 py-2 rounded-md text-md font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {/* end of nav link items */}
+            </div>
+          </div>            
+      )}
+    </Disclosure>
+    }
+    </>
+                          
+    )
 }
