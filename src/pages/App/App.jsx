@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-import Users from "../Users/Users"
 import authService from "../../services/authService"
 import "./App.css";
 import * as snippetAPI from '../../services/snippets-api'
@@ -55,16 +54,12 @@ class App extends Component {
     );
   }
   
-  async componentDidMount() {
-    const snippets = await snippetAPI.getAll();
-    this.setState({snippets});
-  }
-
   render() {
     const {user} = this.state;
+
     return (
       <>
-        <PageHeader user={this.state.user} handleLogout={this.handleLogout}  />
+        <PageHeader user={user} handleLogout={this.handleLogout}  />
 
         <Route 
           exact path="/"
@@ -84,11 +79,12 @@ class App extends Component {
             handleDeleteSnippet={this.handleDeleteSnippet} />}
         />
 
+        {/* TODO: Marty do we need this switch router?   */}
+        
         <Switch>
           <Route exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
           />
-    
           <Route  exact path='/search/all'
                   render={()=><SearchResultsPage  />}
           />
@@ -117,19 +113,11 @@ class App extends Component {
             />
           )}
         />
-        {/* unused route atm */}
-        <Route 
-          exact
-          path="/users"
-          render={({ history}) =>
-            user ? <Users /> : <Redirect to="/login" />
-          }
-        />
         <Route exact path='/snippets/create' render={() =>
           authService.getUser() ?
             <CreateSnippetPage
               handleAddSnippet={this.handleAddSnippet}
-              user={this.state.user}
+              user={user}
             />
             :
             <Redirect to='/login' />
@@ -138,7 +126,7 @@ class App extends Component {
                 render={({match, location}) => 
                 authService.getUser() ? 
                 <EditSnippetPage  
-                  user={this.state.user}
+                  user={user}
                   location={location}
                   match={match}
                   handleUpdateSnippet={this.handleUpdateSnippet}
@@ -146,7 +134,6 @@ class App extends Component {
                 :
                 <Redirect to='/login' />
         }/>
-
         <PageFooter />
       </>
     );

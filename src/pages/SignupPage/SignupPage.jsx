@@ -8,15 +8,10 @@ class SignupPage extends Component {
     message: ''
   }
 
-  
-
   render() {
     return (
       <main>
-
         <SignupForm {...this.props} />
-
-
         <p>{this.state.message}</p>
       </main>
     );
