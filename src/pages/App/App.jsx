@@ -41,15 +41,6 @@ class App extends Component {
   handleDeleteSnippet = async id => {
     console.log('handleDeleteSnippet triggered')
     console.log('id passed: ', id)
-    console.log('this.props: ', this)
-    // if(authService.getUser()){
-    //   await snippetAPI.deleteOne(id);
-    //   this.setState(state => ({
-    //     snippets: state.snippets.filter(m => m._id !== id)
-    //   }), () => this.props.history.push('/search/all'));
-    // } else {
-    //   this.props.history.push('/login')
-    // }
   }
 
   handleUpdateSnippet = async updatedSnippetData => {
@@ -97,9 +88,7 @@ class App extends Component {
           <Route exact path='/search/all'
                   render={()=><SearchResultsPage search='all' />}
           />
-          {/*TODO: delete this later it's just a placeholder
-          TODO: ...or redirect to splash page with search
-          TODO: ...or maybe an advanced search options page?*/}
+    
           <Route  exact path='/search/all'
                   render={()=><SearchResultsPage  />}
           />

@@ -6,7 +6,6 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
-// TODO: the links inside the avatar dropdown are placeholders for now to clear warnings in terminal 
  
 
 const navigation = [
