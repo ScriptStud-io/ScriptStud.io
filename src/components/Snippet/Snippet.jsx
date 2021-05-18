@@ -45,20 +45,6 @@ function Snippet(props) {
                 </Grid.Row>
                 <div className="mt-3"></div>
 
-                <Grid.Row id='snip-comp-lang'>
-                <li className="w-1/6 bg-white shadow overflow-hidden rounded-md px-6 py-4 border-t-4  border-current">
-                    <Grid.Column id='snip-comp-lang' width={3}>
-                        <h2>Languages<br></br>Frameworks<br></br>Libraries</h2>
-                    </Grid.Column>
-                    </li>
-                    <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
-                    <Grid.Column className='snip-comp-info-field' width={10}>
-                        We currently don't have anything for this, should we get rid of it?
-                    </Grid.Column>
-                    </li>
-                </Grid.Row>
-                <div className="mt-3"></div>
-
                 <Grid.Row id='snip-comp-genform'>
                 <li className="w-1/6 bg-white shadow overflow-hidden rounded-md px-6 py-4 border-t-4  border-current">
                     <Grid.Column id='snip-comp-genform' width={3}>

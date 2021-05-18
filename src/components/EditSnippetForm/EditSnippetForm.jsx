@@ -2,7 +2,7 @@ import './EditSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
 import { useHistory, useLocation } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { useCodeEditor } from '../../hooks/useCodeEditor'
+// import { useCodeEditor } from '../../hooks/useCodeEditor'
 import * as snippetAPI from '../../services/snippets-api'
 import CodeEditor from '../CodeEditor/CodeEditor'
 import SyntaxHighlighter from '../SyntaxHighlighter/SyntaxHighlighter'
