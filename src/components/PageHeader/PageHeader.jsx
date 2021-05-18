@@ -4,7 +4,6 @@ import { Disclosure} from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
-
 const navigation = [
   { name: 'Home', href: '/', current: false, loggedIn: [true]},
   { name: '+ Create', href: '/snippets/create', current: false, loggedIn: [true]},
