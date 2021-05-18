@@ -1,13 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React, { useState, useEffect } from 'react';
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure} from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
-// TODO: the links inside the avatar dropdown are placeholders for now to clear warnings in terminal 
- 
 
 const navigation = [
   { name: 'Home', href: '/', current: false, loggedIn: [true]},
@@ -120,7 +116,6 @@ export default function PageHeader(props) {
       )}
     </Disclosure>
     }
-    </>
-                          
-    )
+    </>                    
+  )
 }
