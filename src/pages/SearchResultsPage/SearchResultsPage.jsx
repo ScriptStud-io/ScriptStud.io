@@ -28,6 +28,7 @@ const SearchResultsPage = props => {
         )      
     }, [search])   
 
+    // returns a list of all snippets if no search box is left blank
     const searchResults = search.text ? filteredResults : allSnippets
 
     return (
