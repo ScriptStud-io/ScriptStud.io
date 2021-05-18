@@ -46,14 +46,12 @@ class SignupForm extends Component {
     <main className="LoginPage">
       <div className="mt-10 sm:mt-0">
         <div className="w-full">
-          {/* <div className="md:col-span-1">
-            
-          </div> */}
           <div className="mb-10 md:mt-10 md:col-span-2">
             <form autoComplete="off" onSubmit={this.handleSubmit}>
               <div className="shadow overflow-hidden sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
+
                     <div className="col-span-6 sm:col-span-6">
                       <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
                         Username
@@ -69,7 +67,6 @@ class SignupForm extends Component {
                       />
                     </div>
                    
-                    
                     <div className="col-span-6 sm:col-span-6">
                       <label htmlFor="email_address" className="block text-sm font-medium text-gray-700">
                         Email address
@@ -85,8 +82,6 @@ class SignupForm extends Component {
                       />
                     </div>
                     
-       
-
                     <div className="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label htmlFor="state" className="block text-sm font-medium text-gray-700">
                         Password
@@ -116,8 +111,6 @@ class SignupForm extends Component {
                       />
                     </div>
                     
-            
-          
                   </div>
                 </div>
                     <div className="px-4 py-3 bg-gray-50 sm:px-6">
