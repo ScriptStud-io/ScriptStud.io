@@ -8,9 +8,7 @@ module.exports = {
   update,
 }
 
-function update(req,res) {
-  console.log(`req.params.id: `, req.params.id)
-  console.log(`req.body: `, req.body)
+function update(req,res) {                              // function to update a snippet
   Snippet.findByIdAndUpdate(req.params.id, req.body)
     .then(snippet => {res.json(snippet)})
     .catch(err => res.json(err))
