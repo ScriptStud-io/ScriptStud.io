@@ -34,8 +34,11 @@ function getOneSnip(req, res) {
 }
 
 function create(req, res) {
-    req.body.addedBy = req.user._id
-    Snippet.create(req.body)
+  req.body.addedBy = req.user._id;
+  console.log('req.body before: ', req.body);
+  req.body.isPrivate = !!req.body.isPrivate;
+  console.log('req.body after: ', req.body);
+  Snippet.create(req.body)
     .then(snippet => {res.json(snippet)})
-    .catch(err => {res.json(err)})
+    .catch(err => {res.json(err)});
 }
