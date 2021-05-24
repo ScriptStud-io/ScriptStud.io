@@ -20,7 +20,6 @@ export default function EditSnippetForm(props){
     //  custom hook to initialize state
     const [state, setState] = useForm(location.state.snippet);
 
-
     // hook to check form validity 
     useEffect(() => {
         formRef.current.checkValidity() ? setValidForm(false) : setValidForm(true);
@@ -32,8 +31,6 @@ export default function EditSnippetForm(props){
         await snippetAPI.update(state)
         history.push('/search/all')
     }
-
-    console.log('AAA props: ', props)
 
     return ( 
         <main>
