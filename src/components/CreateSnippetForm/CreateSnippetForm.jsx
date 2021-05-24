@@ -25,6 +25,7 @@ export default function CreateSnippetForm(props){
         notes: "",
         sample: "Insert Code", 
         tags: [],
+        isPrivate: false
     })
 
     // function to handle snippet create via api

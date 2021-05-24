@@ -20,8 +20,7 @@ const snippetSchema = new Schema({
 		type: String
 	},
 	isPrivate: {
-		type: Boolean,
-		default: false
+		type: Boolean
 	},
 	tags: {
 		type: [String]
