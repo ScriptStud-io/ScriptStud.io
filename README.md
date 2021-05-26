@@ -13,6 +13,8 @@ To fill this gap, we have created ScriptStud.io.  ScriptStud.io is a platform wh
 
 The developers of this app originally created it as a Unit Project for their curriculum as Fellows in General Assembly's Software Engineering Immersion program.  See [Appendix A](#appendix-a-assignment) for more information on the original specifications.
 
+To optimize readability of code in this file, it is suggested to view it with text-wrapping set to no fewer than 160 characters.
+
 # Table of Contents
 1. [Instructions for Use](#instructions)
 2. [Version Notes](#version-notes)

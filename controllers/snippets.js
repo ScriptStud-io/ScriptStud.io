@@ -45,6 +45,7 @@ function getOneSnip(req, res) {                         // return one snippet by
 
 /*******  START: UPDATE FUNCTIONS  *******/
 function update(req,res) {                              // function to update a snippet
+  req.body.isPrivate = !!req.body.isPrivate;            // necessary to allow user to toggle private or public status
   Snippet.findByIdAndUpdate(req.params.id, req.body)
     .then(snippet => {res.json(snippet)})
     .catch(err => res.json(err))
