@@ -37,11 +37,6 @@ class App extends Component {
     }), () => this.props.history.push('/search/all'));
   }
 
-  handleDeleteSnippet = async id => {
-    console.log('handleDeleteSnippet triggered')
-    console.log('id passed: ', id)
-  }
-
   handleUpdateSnippet = async updatedSnippetData => {
     const updatedSnippet = await snippetAPI.update(updatedSnippetData);
     updatedSnippet.addedBy = {name: this.state.user.name, _id: this.state.user._id}

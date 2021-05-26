@@ -6,7 +6,6 @@ export const useForm = (initialValues) => {
     return [
         values, 
         (e, name) => {
-            console.log('e, name:', e, name)
             if(e.target) {
                 setValues({
                     ...values, 

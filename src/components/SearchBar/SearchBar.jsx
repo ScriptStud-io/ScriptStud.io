@@ -1,8 +1,7 @@
 import { Checkbox } from 'semantic-ui-react';
 import './SearchBar.css';
 
-
-const SearchBar = (props) => {
+const SearchBar = props => {
 
     return (
       <div className="flex">
