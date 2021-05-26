@@ -18,6 +18,12 @@ export function getAll() {
         .then(res => res.json())
 }
 
+// TODO: add authorization token once public-private is working
+export function getAllByCurrentUser(userid) {
+    return fetch(`${BASE_URL}user/${userid}`, {mode: 'cors'})
+        .then(res => res.json())
+}
+
 export function getOne(id) {
     return fetch(`${BASE_URL}${id}`, {mode: 'cors'})
         .then(res => res.json())
@@ -32,8 +38,6 @@ export function deleteOne(id) {
 }
 
 export function update(snippet) {
-    console.log('update function triggered')
-    console.log('snippet:', snippet)
     return fetch(`${BASE_URL}${snippet._id}`, {
         method: "PUT", 
         headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},

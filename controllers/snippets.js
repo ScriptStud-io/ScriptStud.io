@@ -35,6 +35,14 @@ function index(req, res) {                               // return all snippets 
     .catch(err => {res.json(err)})
 }
 
+function indexCurrentUser(req, res) {
+  console.log('req.params.userid: ', req.params.userid)
+  Snippet.find({addedBy: req.params.userid})
+    .populate('addedBy')
+    .then(snippets => res.json(snippets))
+    .catch(err => {res.json(err)})
+}
+
 function getOneSnip(req, res) {                         // return one snippet by document id
   Snippet.findById(req.params.id)
     .then(snippet => res.json(snippet))
@@ -64,9 +72,9 @@ function deleteOne(req,res) {
 
 /*******  START: EXPORTS  *******/
 module.exports = {
-  create,                   // 'Create' functions
-  index, getOneSnip,        // 'Read' functions
-  update,                   // 'Update' functions
-  delete: deleteOne         // 'Destroy' functions
+  create,                                 // 'Create' functions
+  index, indexCurrentUser, getOneSnip,    // 'Read' functions
+  update,                                 // 'Update' functions
+  delete: deleteOne                       // 'Destroy' functions
 }
 /*******  END: EXPORTS  *******/
