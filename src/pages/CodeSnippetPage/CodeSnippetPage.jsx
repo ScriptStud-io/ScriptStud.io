@@ -12,6 +12,7 @@ const CodeSnippetPage = props => {
         notes: "",
         sample: "", 
         tags: [],
+        isPrivate: false,
     });
 
     useEffect(() => {

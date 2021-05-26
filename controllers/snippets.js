@@ -45,6 +45,7 @@ function getOneSnip(req, res) {                         // return one snippet by
 
 /*******  START: UPDATE FUNCTIONS  *******/
 function update(req,res) {                              // function to update a snippet
+  req.body.isPrivate = !!req.body.isPrivate;            // necessary to allow user to toggle private or public status
   Snippet.findByIdAndUpdate(req.params.id, req.body)
     .then(snippet => {res.json(snippet)})
     .catch(err => res.json(err))
@@ -60,9 +61,12 @@ function deleteOne(req,res) {
 }
 /*******  END: UPDATE FUNCTIONS  *******/
 
+
+/*******  START: EXPORTS  *******/
 module.exports = {
   create,                   // 'Create' functions
   index, getOneSnip,        // 'Read' functions
   update,                   // 'Update' functions
   delete: deleteOne         // 'Destroy' functions
 }
+/*******  END: EXPORTS  *******/
