@@ -1,9 +1,9 @@
 import './EditSnippetForm.css';
 import React, { useState, useEffect, useRef  } from 'react';
-import { useHistory, useLocation } from 'react-router-dom'
-import { useForm } from '../../hooks/useForm'
-import * as snippetAPI from '../../services/snippets-api'
-import CodeEditor from '../CodeEditor/CodeEditor'
+import { useHistory, useLocation } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
+import * as snippetAPI from '../../services/snippets-api';
+import CodeEditor from '../CodeEditor/CodeEditor';
 
 // TODO: update tag input(s) with parsing functionality
 // TODO: add form validation warning for invalid form 
@@ -14,9 +14,9 @@ export default function EditSnippetForm(props){
     //  allow us history access for routing 
     const history = useHistory();
     // initialize form as invalid
-    const [formInvalid, setValidForm] = useState(true)
+    const [formInvalid, setValidForm] = useState(true);
     // initialize object for form validation
-    const formRef = useRef()
+    const formRef = useRef();
     //  custom hook to initialize state
     const [state, setState] = useForm(location.state.snippet);
 
@@ -151,13 +151,13 @@ export default function EditSnippetForm(props){
                     </label>
                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                         <input
-                        type="checkbox"
-                        name="isPrivate"
-                        id="isPrivate"
-                        value={state.isPrivate}
-                        onChange={setState}
-                        pattern=".{2,}"
-                        className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md px-2"
+                            type="checkbox"
+                            name="isPrivate"
+                            id="isPrivate"
+                            checked={props.currentSnippet.isPrivate}
+                            onChange={setState}
+                            pattern=".{2,}"
+                            className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md px-2"
                         />
                     </div>
                   </div>

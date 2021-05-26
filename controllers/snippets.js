@@ -60,9 +60,12 @@ function deleteOne(req,res) {
 }
 /*******  END: UPDATE FUNCTIONS  *******/
 
+
+/*******  START: EXPORTS  *******/
 module.exports = {
   create,                   // 'Create' functions
   index, getOneSnip,        // 'Read' functions
   update,                   // 'Update' functions
   delete: deleteOne         // 'Destroy' functions
 }
+/*******  END: EXPORTS  *******/
