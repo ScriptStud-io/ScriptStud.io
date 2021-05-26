@@ -4,10 +4,20 @@ import { Disclosure} from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import './PageHeader.css';
 
+/**   Info about 'const navigation'
+ *        name = text rendered in navbar
+ *        href = URL pathway
+ *        current = leave on 'false'
+ *        loggedIn = if [true] only visible to users when logged in
+ *                   if [false] only visible to users when logged out
+ *                   if [true, false] universally visible to users
+ */
+
 const navigation = [
   { name: 'Home', href: '/', current: false, loggedIn: [true]},
   { name: '+ Create', href: '/snippets/create', current: false, loggedIn: [true]},
-  { name: 'Search Snips', href: '/search/all', current: false, loggedIn: [true, false] },
+  { name: 'All Snips', href: '/search/all', current: false, loggedIn: [true, false] },
+  { name: 'My Snips', href: '/search/mysnips', current: false, loggedIn: [true] },
   { name: 'Login', href: '/login', current: false, loggedIn: [false] },
   { name: 'Sign Up', href: '/signup', current: false, loggedIn: [false] },
 ]

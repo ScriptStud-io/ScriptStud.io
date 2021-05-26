@@ -24,7 +24,7 @@ function create(req, res) {                             // create a new snippet
     .then(snippet => {res.json(snippet)})               
     .catch(err => {res.json(err)});
 }
-/*******  START: CREATE FUNCTIONS  *******/
+/*******  END: CREATE FUNCTIONS  *******/
 
 
 /*******  START: READ FUNCTIONS  *******/
@@ -35,8 +35,7 @@ function index(req, res) {                               // return all snippets 
     .catch(err => {res.json(err)})
 }
 
-function indexCurrentUser(req, res) {
-  console.log('req.params.userid: ', req.params.userid)
+function indexCurrentUser(req, res) {                   // return all snippets created by the current user
   Snippet.find({addedBy: req.params.userid})
     .populate('addedBy')
     .then(snippets => res.json(snippets))
