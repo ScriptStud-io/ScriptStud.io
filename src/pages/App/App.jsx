@@ -82,16 +82,9 @@ class App extends Component {
         {/* TODO: Marty do we need this switch router?   */}
         
         <Switch>
-          <Route exact path='/search/all'
-                  render={()=><SearchResultsPage search='all' />}
-          />
-          <Route  exact path='/search/all'
-                  render={()=><SearchResultsPage  />}
-          />
+          <Route exact path='/search/all' render={()=><SearchResultsPage search='all' currentUser={this.state.user}/>}/>
+          <Route exact path='/search/mysnips' render={()=><SearchResultsPage search='user' currentUser={this.state.user}/>}/>
           {/*TODO: main search sends selected tech as prop*/}
-          <Route  path='/search/:tech'
-                  render={()=><SearchResultsPage />}
-          />
         </Switch>
         <Route
           exact
