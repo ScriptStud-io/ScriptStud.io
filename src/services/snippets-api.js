@@ -24,6 +24,17 @@ export function getAllByCurrentUser(userid) {
         .then(res => res.json())
 }
 
+// TODO: add authorization token once public-private is working
+export function getPrivateByCurrentUser(userid) {
+    return fetch(`${BASE_URL}user_private/${userid}`, {mode: 'cors'})
+        .then(res => res.json())
+}
+
+export function getAllPublic() {
+    return fetch(`${BASE_URL}public`, {mode: 'cors'})
+        .then(res => res.json())
+}
+
 export function getOne(id) {
     return fetch(`${BASE_URL}${id}`, {mode: 'cors'})
         .then(res => res.json())

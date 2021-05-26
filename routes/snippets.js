@@ -9,9 +9,11 @@ const snippetsCtrl = require('../controllers/snippets');
  */
 
 /*******  START: PUBLIC ROUTES  *******/
-router.get('/', snippetsCtrl.index);                    // route for index view (show all snippets)
+router.get('/', snippetsCtrl.index);                                        // route for index view (show all snippets)
+router.get('/public', snippetsCtrl.getAllPublicSnippets);
 router.get('/user/:userid', snippetsCtrl.indexCurrentUser);
-router.get('/:id', snippetsCtrl.getOneSnip);            // route to view individual snippet
+router.get('/user_private/:userid', snippetsCtrl.getUserPrivateSnippets);
+router.get('/:id', snippetsCtrl.getOneSnip);                                // route to view individual snippet
 /*******  END PUBLIC ROUTES ROUTES  *******/
 
 

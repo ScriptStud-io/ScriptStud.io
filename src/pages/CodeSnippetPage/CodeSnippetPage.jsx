@@ -15,12 +15,14 @@ const CodeSnippetPage = props => {
         isPrivate: false,
     });
 
+    const snipId = props.match.params.snipid;
+
     useEffect(() => {
         (async function() {
-            const snippet = await snippetAPI.getOne(props.match.params.snipid);
+            const snippet = await snippetAPI.getOne(snipId);
             setSnippet(snippet);
         })();
-    }, []);
+    }, [snipId]);
 
 
     return (

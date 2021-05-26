@@ -13,27 +13,30 @@ const SearchResultsPage = props => {
         search: "", 
     })
     const [filteredResults, setFilteredResults] = useState([]);
-
-    const location = useLocation();
+    const {pathname} = useLocation();
+    const {currentUser} = props;
 
     useEffect(() => {
         (async function() {
             let snippets = [];
-            if (location.pathname === '/search/all') {
-                snippets = await snippetAPI.getAll();
-            } else if (location.pathname === '/search/mysnips') {
-                snippets = await snippetAPI.getAllByCurrentUser(props.currentUser._id);
-                console.log("here's the money: ", props.currentUser._id)
+            if (pathname === '/search/all' && !!currentUser === false) {
+                snippets = await snippetAPI.getAllPublic();
+            } else if (pathname === '/search/all') {
+                const userPrivateSnippets = await snippetAPI.getPrivateByCurrentUser(currentUser._id);
+                const allPublicSnippets = await snippetAPI.getAllPublic();
+                snippets = userPrivateSnippets.concat(allPublicSnippets);
+            } else if (pathname === '/search/mysnips') {
+                snippets = await snippetAPI.getAllByCurrentUser(currentUser._id);
             }
             setAllSnippets(snippets);
         })();
-    }, [])
+    }, [pathname, currentUser])
 
     useEffect(() => {
         setFilteredResults(
             allSnippets.filter(snippet => snippet.title.toLowerCase().includes(search.text.toLowerCase()))   
         )      
-    }, [search])
+    }, [search.text])
 
     // returns a list of all snippets if no search box is left blank
     const searchResults = search.text ? filteredResults : allSnippets;
@@ -51,8 +54,6 @@ const SearchResultsPage = props => {
                             <SnippetPreview key={idx} user={props.user} snippet={snippet} />
                         </li> 
                     ))}
-                    {console.log('props.currentUser: ', props.currentUser)}
-                    {console.log('location: ', location)}
                 </ul>
             </section>
             <div className="mb-4"></div>
