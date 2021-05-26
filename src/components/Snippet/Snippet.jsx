@@ -10,8 +10,11 @@ function Snippet(props) {
     let history = useHistory();
     const goBack = () => history.goBack();
 
-    const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id)
-   
+    const deleteClickHandler = () => snippetAPI.deleteOne(props.snippet._id);
+
+    const privateMessage = 'This is a private snippet.  It is only visible to you.';
+    const publicMessage = 'This is a public snippet.  Anyone can view it.';
+
     return (
         <main className="w-3/4 mt-6 mx-auto flex">
             <ul className="">
@@ -85,9 +88,10 @@ function Snippet(props) {
                     </Grid.Column>
                     </li>
                 </Grid.Row>
+
                 <div className="mt-3"></div>
 
-                <Grid.Row id='snip-comp-tags'>
+                <Grid.Row id='snip-comp-privacy'>
                 <li className="w-1/6 bg-white shadow overflow-hidden rounded-md px-6 py-4 border-t-4  border-current">
                     <Grid.Column id='snip-comp-tags' width={3}>
                         <h2>Tags</h2>
@@ -99,6 +103,22 @@ function Snippet(props) {
                     </Grid.Column>
                     </li>
                 </Grid.Row>
+
+                <div className="mt-3"></div>
+
+                <Grid.Row id='snip-comp-tags'>
+                <li className="w-1/6 bg-white shadow overflow-hidden rounded-md px-6 py-4 border-t-4  border-current">
+                    <Grid.Column id='snip-comp-tags' width={3}>
+                        <h2>Privacy</h2>
+                    </Grid.Column>
+                </li>
+                <li className="ml-2 w-4/6 bg-white shadow overflow-hidden rounded-md px-4 py-2 border-t-4  border-current">
+                    <Grid.Column className='snip-comp-info-field' width={10}>
+                        {props.snippet.isPrivate ? privateMessage : publicMessage}
+                    </Grid.Column>
+                </li>
+                </Grid.Row>
+
                 <div className="mt-3"></div>
                 <Grid.Row>
                     <li className="w-1/6 overflow-hidden rounded-md px-6 py-4">
@@ -119,6 +139,7 @@ function Snippet(props) {
                         </Grid.Column>
                         </li>
                 </Grid.Row>
+                
             </Grid>
             </ul>
         </main>
