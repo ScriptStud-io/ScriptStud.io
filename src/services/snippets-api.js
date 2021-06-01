@@ -13,8 +13,21 @@ export function create(snippet) {
     .then(res => res.json());
 }
 
+/** IMPORTANT!  function getAll() is deprecated in the deployed app because it will ignore privacy
+ *              settings and allow a user to see snippets created by other users which have been
+ *              marked private.  It's still here for use in development and testing but should not
+ *              be used in any deployed version of the app.  As a general index function, use
+ *              function getAllVisibleToUser().  This will return all public snippets and a user's
+ *              own private snippets.
+ */
+
 export function getAll() {
     return fetch(`${BASE_URL}`, {mode: 'cors'})
+        .then(res => res.json())
+}
+
+export function getAllVisibleToUser(userid) {
+    return fetch(`${BASE_URL}user/visible/${userid}`, {mode: 'cors'})
         .then(res => res.json())
 }
 
