@@ -36,8 +36,20 @@ function create(req, res) {                             // create a new snippet
      *      keeping it available here for testing putposes.
      */
 
-function index(req, res) {                               // return all snippets in the database
+function index(req, res) {                               // returns all snippets in the database
   Snippet.find({})                                       // DEPRECATED!  Use only for testing purposes
+    .populate('addedBy')
+    .then(snippets => res.json(snippets))
+    .catch(err => {res.json(err)})
+}
+
+function getUserVisibleSnippets(req, res) {
+  Snippet.find({
+    $or: [
+      {isPrivate: false},
+      {addedBy: req.params.userid, isPrivate: true}
+    ]
+  })
     .populate('addedBy')
     .then(snippets => res.json(snippets))
     .catch(err => {res.json(err)})
@@ -74,7 +86,7 @@ function getOneSnip(req, res) {                         // return one snippet by
 
 /*******  START: UPDATE FUNCTIONS  *******/
 function update(req, res) {                              // function to update a snippet
-  req.body.isPrivate = !!req.body.isPrivate;            // necessary to allow user to toggle private or public status
+  req.body.isPrivate = !!req.body.isPrivate;             // necessary to allow user to toggle private or public status
   Snippet.findByIdAndUpdate(req.params.id, req.body)
     .then(snippet => {res.json(snippet)})
     .catch(err => res.json(err))
@@ -94,7 +106,14 @@ function deleteOne(req, res) {
 /*******  START: EXPORTS  *******/
 module.exports = {
   create,                                                                                 // 'Create' functions
-  index, indexCurrentUser, getUserPrivateSnippets, getAllPublicSnippets, getOneSnip,      // 'Read' functions
+  /* Start: READ Functions */
+  index,
+  getUserVisibleSnippets,
+  indexCurrentUser,
+  getUserPrivateSnippets,
+  getAllPublicSnippets,
+  getOneSnip,
+  /* End: READ Functions */
   update,                                                                                 // 'Update' functions
   delete: deleteOne                                                                       // 'Destroy' functions
 }

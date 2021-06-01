@@ -9,9 +9,7 @@ import { useForm } from '../../hooks/useForm'
 const SearchResultsPage = props => {
 
     const [allSnippets, setAllSnippets] = useState([]);
-    const [search, setSearch] = useForm({
-        search: "", 
-    })
+    const [search, setSearch] = useForm({ search: "" })
     const [filteredResults, setFilteredResults] = useState([]);
     const {pathname} = useLocation();
     const {currentUser} = props;
@@ -22,9 +20,7 @@ const SearchResultsPage = props => {
             if (pathname === '/search/all' && !!currentUser === false) {
                 snippets = await snippetAPI.getAllPublic();
             } else if (pathname === '/search/all') {
-                const userPrivateSnippets = await snippetAPI.getPrivateByCurrentUser(currentUser._id);
-                const allPublicSnippets = await snippetAPI.getAllPublic();
-                snippets = userPrivateSnippets.concat(allPublicSnippets);
+                snippets = await snippetAPI.getAllVisibleToUser(currentUser._id);
             } else if (pathname === '/search/mysnips') {
                 snippets = await snippetAPI.getAllByCurrentUser(currentUser._id);
             }
