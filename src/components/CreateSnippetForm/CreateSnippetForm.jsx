@@ -162,15 +162,16 @@ export default function CreateSnippetForm(props){
                         Is this a private snippet?
                     </label>
                     <div className="mt-1 sm:mt-0 sm:col-span-2">
-                        <input
-                        type="checkbox"
-                        name="isPrivate"
-                        id="isPrivate"
-                        value={state.isPrivate}
-                        onChange={handleChange}
-                        pattern=".{2,}"
-                        className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md px-2"
-                        />
+
+                        <select id='isPrivate-selector'
+                                name='isPrivate'
+                                onChange={handleChange}
+                                pattern=".{2,}"
+                                className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md px-2">
+                            <option value='' selected>No</option>
+                            <option value='true'>Yes</option>
+                        </select>
+
                     </div>
                   </div>
                   
