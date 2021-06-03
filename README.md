@@ -156,8 +156,7 @@ Date:   Tue Apr 13 13:45:41 2021 -0400
   * Sync data models for OAuth information with the current `User` model.  Must have two-way referencing.
 * Create additional pages and views.
   * Create a tutorial page with videos.
-  * A minimalist splash page with search and sign-in/sign-up functionality.
-  * A User Hub page that shows the logged-in users snippets, saved snippets, account settings, etc.
+  * A User Hub page that shows the logged-in users snippets, saved snippets, account settings, etc. Edit: I've now created a model for this data but we still need to CRUD the data.
 * Allow users to upload avatar images.
   * Fix the fact that every user currently sees Christian's picture in the header.
 * Add forced auto-correct for tags (eg, `JS` will always resolve as `JavaScript`).
@@ -491,11 +490,17 @@ We anticipate that it will take 45 - 90 minutes to complete. However, if necessa
 
 ### Databases
 
-**Model: User**  |  (user account metadata)
-* `username` user's login handle (also display name)
-* `email` user's email address
-* `password` user's password (encrypted)
-* `timestamps` (create/update)
+**Model: Account**  |  (user profile information)
+* `accountUser` reference to the `User` document of account owner
+* `accountSavedSnippets` array of references to snippets the user has "saved" for quick reference
+* `accountGitHubUrl` URL for the user's GitHub profile
+* `accountGitHubHandle` user's GitHub username
+* `accountStackOverflowUrl` URL for the user's Stack Overflow profile
+* `accountStackOverflowHandle` user's Stack Overflow username
+* `accountTwitterUrl` URL for the user's Twitter profile
+* `accountTwitterHandle` user's Twitter username
+* `accountLinkedInUrl` URL for the user's LinkedIn profile
+* `accountPersonalWebsiteUrl` URL for the user's personal website
 
 **Model: Snippet**  |  (snippet data)
 * `title` title of snippet
@@ -505,6 +510,12 @@ We anticipate that it will take 45 - 90 minutes to complete. However, if necessa
 * `sample` example of snippet being used
 * `tags` topic tags for snippet
 * `addedBy` reference to `User` document of snippet creator
+* `timestamps` (create/update)
+
+**Model: User**  |  (user account metadata)
+* `username` user's login handle (also display name)
+* `email` user's email address
+* `password` user's password (encrypted)
 * `timestamps` (create/update)
 
 **Entity Relationship Diagram (ERD)**
