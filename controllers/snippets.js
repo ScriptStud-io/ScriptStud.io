@@ -26,7 +26,6 @@ const Tag = require('../models/tag');                   // import the Tag data m
 function create(req, res) {                             // create a new snippet
   req.body.addedBy = req.user._id;                      // add reference to identify user creating the snippet
   req.body.isPrivate = !!req.body.isPrivate;            // specify the snippet as public or private to user
-  console.log('req.body: ', req.body)
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
     .then(snippet => res.json(snippet))
     // .then(snippet => {console.log(snippet); 
@@ -39,18 +38,27 @@ function addOrUpdateTagDoc(req, res, snip) {
   tagArray.forEach(tag => {
     Tag.exists({tagText: tag}, (err, result) => {
       if (!result) {
-        console.log(`tag '${tag}' is not yet in the database`);
         createTagDoc(tag, snip._id);
       } else {
-        console.log(`tag '${tag}' is already in the database`);
+        updateTagDoc(tag, snip._id);
       }
     })
   });
 }
 
 function createTagDoc(newTag, snipId) {
+  console.log(`tag '${newTag}' is not yet in the database`);
   const tagData = { tagText: newTag, taggedSnippets: snipId };
   Tag.create(tagData);
+}
+
+function updateTagDoc(tag, snipId) {
+  console.log(`tag '${tag}' is already in the database`);
+  Tag.updateOne(
+    { tagText: tag},
+    { $push: { taggedSnippets: snipId }},
+    (err, result) => console.log(result)
+  )
 }
 /*******  END: CREATE FUNCTIONS  *******/
 
@@ -114,7 +122,7 @@ function getOneSnip(req, res) {                         // return one snippet by
 
 /*******  START: UPDATE FUNCTIONS  *******/
 function update(req, res) {                              // function to update a snippet
-  req.body.isPrivate = !!req.body.isPrivate;             // necessary to allow user to toggle private or public status
+  req.body.isPrivate = !!req.body.isPrivate;             // convert req.bodyisPrivate to a boolean
   Snippet.findByIdAndUpdate(req.params.id, req.body)
     .then(snippet => {res.json(snippet)})
     .catch(err => res.json(err))
