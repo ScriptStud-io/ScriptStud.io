@@ -28,33 +28,26 @@ function create(req, res) {                             // create a new snippet
   req.body.isPrivate = !!req.body.isPrivate;            // specify the snippet as public or private to user
   req.body.tags = req.body.tags.split(', ');            // format tags as an array of strings
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
-    .then(snippet => {console.log(snippet); 
-                      addOrUpdateTagDoc(req, res, snippet)})
-    // .then(snippet => res.json(snippet))
+    .then(async snippet => {
+      await manageNewSnippetTags(snippet);
+      res.json(snippet);
+    })
     .catch(err => {res.json(err)});
 }
 
-function addOrUpdateTagDoc(req, res, snip) {
-  snip.tags.forEach(tag => {
-    Tag.exists({tagText: tag}, (err, result) => {
-      result ? updateTagDoc(tag, snip._id) : createTagDoc(tag, snip._id);
-    })
-  });
+function manageNewSnippetTags(snip) {
+  snip.tags.forEach((tag, idx, arr) => {
+    Tag.findOneAndUpdate(
+      { tagText: tag},
+      { $push: { taggedSnippets: snip._id }},
+      { upsert: true },
+      (err, result) => console.log(err)
+    )
+  })
 }
 
-function createTagDoc(newTag, snipId) {
-  console.log(`tag '${newTag}' is not yet in the database`);
-  const tagData = { tagText: newTag, taggedSnippets: snipId };
-  Tag.create(tagData);
-}
-
-function updateTagDoc(tag, snipId) {
-  console.log(`tag '${tag}' is already in the database`);
-  Tag.updateOne(
-    { tagText: tag},
-    { $push: { taggedSnippets: snipId }},
-    (err, result) => console.log(result)
-  )
+function toPage(data) {
+  
 }
 /*******  END: CREATE FUNCTIONS  *******/
 
