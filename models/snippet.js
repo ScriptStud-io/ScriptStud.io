@@ -26,7 +26,7 @@ const snippetSchema = new Schema({
 		type: Boolean
 	},
 	tags: {
-		type: String
+		type: [String]
 	},
 	addedBy: { type: Schema.Types.ObjectId, ref: 'User'},
 }, { timestamps: true })
