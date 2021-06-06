@@ -29,25 +29,21 @@ function create(req, res) {                             // create a new snippet
   req.body.tags = req.body.tags.split(', ');            // format tags as an array of strings
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
     .then(async snippet => {
-      await manageNewSnippetTags(snippet);
-      res.json(snippet);
+      await manageNewSnippetTags(snippet);              // add references to this snippet on relevant tag documents
+      res.json(snippet);                                // allows front-end to redirect to /search/all pathway
     })
     .catch(err => {res.json(err)});
 }
 
-function manageNewSnippetTags(snip) {
-  snip.tags.forEach((tag, idx, arr) => {
+function manageNewSnippetTags(snip) {                   // this function is chained to function create()
+  snip.tags.forEach(tag => {                            // iterate over array with snippet tags
     Tag.findOneAndUpdate(
-      { tagText: tag},
-      { $push: { taggedSnippets: snip._id }},
-      { upsert: true },
-      (err, result) => console.log(err)
+      { tagText: tag},                                  // locate a Tag-model document for the current tag
+      { $push: { taggedSnippets: snip._id }},           // add the snippet's database id as a reference in the tag document
+      { upsert: true },                                 // createa  new Tag-model document if one doesn't exist
+      (err, result) => console.log(err)                 // error-first callback function must be present for this to work
     )
   })
-}
-
-function toPage(data) {
-  
 }
 /*******  END: CREATE FUNCTIONS  *******/
 

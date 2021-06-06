@@ -32,10 +32,11 @@ export default function EditSnippetForm(props){
         history.push('/search/all')
     }
 
-    console.log(props.currentSnippet.isPrivate)
+    // TODO: add a hidden input field that lists tags at start
+    // TODO: back-end will need to see which tags are removed
+    // TODO: to update Tag data model accordingly
 
     return ( 
-
         <main>
             <div className="tbd">
                 <div className="pt-10 space-y-6 sm:pt-5 sm:space-y-5 max-w-4xl">
