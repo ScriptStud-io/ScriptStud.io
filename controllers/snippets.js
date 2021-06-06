@@ -26,22 +26,18 @@ const Tag = require('../models/tag');                   // import the Tag data m
 function create(req, res) {                             // create a new snippet
   req.body.addedBy = req.user._id;                      // add reference to identify user creating the snippet
   req.body.isPrivate = !!req.body.isPrivate;            // specify the snippet as public or private to user
+  req.body.tags = req.body.tags.split(', ');            // format tags as an array of strings
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
-    .then(snippet => res.json(snippet))
-    // .then(snippet => {console.log(snippet); 
-    //                   addOrUpdateTagDoc(req, res, snippet)})               
+    .then(snippet => {console.log(snippet); 
+                      addOrUpdateTagDoc(req, res, snippet)})
+    // .then(snippet => res.json(snippet))
     .catch(err => {res.json(err)});
 }
 
 function addOrUpdateTagDoc(req, res, snip) {
-  const tagArray = snip.tags.split(', ');
-  tagArray.forEach(tag => {
+  snip.tags.forEach(tag => {
     Tag.exists({tagText: tag}, (err, result) => {
-      if (!result) {
-        createTagDoc(tag, snip._id);
-      } else {
-        updateTagDoc(tag, snip._id);
-      }
+      result ? updateTagDoc(tag, snip._id) : createTagDoc(tag, snip._id);
     })
   });
 }
