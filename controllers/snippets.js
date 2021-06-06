@@ -28,33 +28,22 @@ function create(req, res) {                             // create a new snippet
   req.body.isPrivate = !!req.body.isPrivate;            // specify the snippet as public or private to user
   req.body.tags = req.body.tags.split(', ');            // format tags as an array of strings
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
-    .then(snippet => {console.log(snippet); 
-                      addOrUpdateTagDoc(req, res, snippet)})
-    // .then(snippet => res.json(snippet))
+    .then(async snippet => {
+      await manageNewSnippetTags(snippet);              // add references to this snippet on relevant tag documents
+      res.json(snippet);                                // allows front-end to redirect to /search/all pathway
+    })
     .catch(err => {res.json(err)});
 }
 
-function addOrUpdateTagDoc(req, res, snip) {
-  snip.tags.forEach(tag => {
-    Tag.exists({tagText: tag}, (err, result) => {
-      result ? updateTagDoc(tag, snip._id) : createTagDoc(tag, snip._id);
-    })
-  });
-}
-
-function createTagDoc(newTag, snipId) {
-  console.log(`tag '${newTag}' is not yet in the database`);
-  const tagData = { tagText: newTag, taggedSnippets: snipId };
-  Tag.create(tagData);
-}
-
-function updateTagDoc(tag, snipId) {
-  console.log(`tag '${tag}' is already in the database`);
-  Tag.updateOne(
-    { tagText: tag},
-    { $push: { taggedSnippets: snipId }},
-    (err, result) => console.log(result)
-  )
+function manageNewSnippetTags(snip) {                   // this function is chained to function create()
+  snip.tags.forEach(tag => {                            // iterate over array with snippet tags
+    Tag.findOneAndUpdate(
+      { tagText: tag},                                  // locate a Tag-model document for the current tag
+      { $push: { taggedSnippets: snip._id }},           // add the snippet's database id as a reference in the tag document
+      { upsert: true },                                 // createa  new Tag-model document if one doesn't exist
+      (err, result) => console.log(err)                 // error-first callback function must be present for this to work
+    )
+  })
 }
 /*******  END: CREATE FUNCTIONS  *******/
 

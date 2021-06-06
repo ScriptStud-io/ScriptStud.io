@@ -7,9 +7,7 @@ const CreateSnippetPage = props => {
     return ( 
         <section>
             <div className='w-3/4 mt-6 mx-auto'>
-                <CreateSnippetForm
-                handleAddSnippet={props.handleAddSnippet}
-                user={props.user} />
+                <CreateSnippetForm handleAddSnippet={props.handleAddSnippet} user={props.user} />
             </div>
         </section>
     );
