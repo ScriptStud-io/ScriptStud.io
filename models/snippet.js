@@ -1,6 +1,9 @@
+/******* START: IMPORT STATEMENTS *******/
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+/******* END: IMPORT STATEMENTS *******/
 
+/******* START: MAIN SCHEMA *******/
 const snippetSchema = new Schema({
 	title: {
 		type: String,
@@ -23,9 +26,12 @@ const snippetSchema = new Schema({
 		type: Boolean
 	},
 	tags: {
-		type: [String]
+		type: String
 	},
 	addedBy: { type: Schema.Types.ObjectId, ref: 'User'},
 }, { timestamps: true })
+/******* END: MAIN SCHEMA *******/
 
+/******* START: EXPORTS *******/
 module.exports = mongoose.model('Snippet', snippetSchema);
+/******* END: EXPORTS *******/

@@ -1,5 +1,6 @@
 /*******  START: IMPORT STATEMENTS  *******/
-const Snippet = require('../models/snippet');           // import the snippet data model
+const Snippet = require('../models/snippet');           // import the Snippet data model
+const Tag = require('../models/tag');                   // import the Tag data model
 /*******  END: IMPORT STATEMENTS  *******/
 
 
@@ -13,6 +14,11 @@ const Snippet = require('../models/snippet');           // import the snippet da
  *        except as a matter of organization.  In some cases, two separate functions may be 
  *        chained in that one function triggers another.  This will be noted in cases where
  *        it occurs.
+ * 
+ *    Controller functions for the Tag data model are located in this file rather than in a
+ *        dedicated tag.js file.  This is because the Tag model exists purely as a way to
+ *        organize references to Snippet documents, so all CRUD operations on the Tag model
+ *        will be chained to Snippet controller functions.
  */
 
 
@@ -20,9 +26,31 @@ const Snippet = require('../models/snippet');           // import the snippet da
 function create(req, res) {                             // create a new snippet
   req.body.addedBy = req.user._id;                      // add reference to identify user creating the snippet
   req.body.isPrivate = !!req.body.isPrivate;            // specify the snippet as public or private to user
+  console.log('req.body: ', req.body)
   Snippet.create(req.body)                              // this starts the code block that actually makes the snippet
-    .then(snippet => {res.json(snippet)})               
+    .then(snippet => res.json(snippet))
+    // .then(snippet => {console.log(snippet); 
+    //                   addOrUpdateTagDoc(req, res, snippet)})               
     .catch(err => {res.json(err)});
+}
+
+function addOrUpdateTagDoc(req, res, snip) {
+  const tagArray = snip.tags.split(', ');
+  tagArray.forEach(tag => {
+    Tag.exists({tagText: tag}, (err, result) => {
+      if (!result) {
+        console.log(`tag '${tag}' is not yet in the database`);
+        createTagDoc(tag, snip._id);
+      } else {
+        console.log(`tag '${tag}' is already in the database`);
+      }
+    })
+  });
+}
+
+function createTagDoc(newTag, snipId) {
+  const tagData = { tagText: newTag, taggedSnippets: snipId };
+  Tag.create(tagData);
 }
 /*******  END: CREATE FUNCTIONS  *******/
 
