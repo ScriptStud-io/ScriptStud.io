@@ -7,8 +7,8 @@ const Schema = mongoose.Schema;
 /******* START: MAIN SCHEMA *******/
 const tagSchema = new Schema({
     tagText: {type: String, required: true},
-    taggedSnippets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Snippet' }],
-}, { timestamps: true });
+    taggedSnippets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Snippet' }]
+});
 /******* END: MAIN SCHEMA *******/
 
 
